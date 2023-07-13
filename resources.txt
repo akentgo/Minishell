@@ -1,0 +1,4 @@
+https://www.notion.so/Minishell-Materials-7bbd45a806e04395ab578ca3f805806c
+https://github.com/paulahemsi/minishell
+https://github.com/vportens/minishell
+https://github.com/madebypixel02/minishell

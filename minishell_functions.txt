@@ -1,0 +1,26 @@
+-Readline(const char *prompt): Will read the line from the terminal and return it, using prompt as prompt, if prompt is NULL, or the string is empty, no prompt is issued, the line returned is allocated with malloc() and it must be freed after you are done, the line returned has the final newlined removed, so only the text remains.
+
+Rl_Clear_History(void): Clear the history list by deleting all of the entries, in the same manner as the history library's clear_history() function.
+
+Rl_on_new_line(void): Tell the update functions that we have moved onto a new (empty) line, usually after outputting a newline.
+
+Rl_replace_line(const char *text, int clear_undo): replace the contents of rl_line_bufffer with text. The point and mark are preserved, if possible. If clear_undo is non_zero, the undo list associated with the current line is cleared.
+
+Rl_redisplay(void): Change what's displayed on the screen to reflect the current contents of rl_line_buffer()
+
+add_history(const char *string): places a string at the end of the history list. The associated data field (if any) is set to NULL. If the maximum number of history entries has been set using stfile_history(), and the new number of history entries would exceed that maximum, the oldest history entry is removed.
+
+getcwd: returns the path to the current directory (similar to pwd in shell).
+
+chdir: change the current directory (similar to cd in shell).
+
+stat: copy the state of a file to a struct defined (search about this struct).
+
+ttyname: returns a string containing the path name of the terminal associated with the given file descriptor.
+
+unlink(): deletes a name from the filesystem.  If that name was the last link to a file and no processes have the file open, the file is deleted and the space it was using is made available for reuse. If the name was the last link to a file but any processes still have the file open, the file will remain in existence until the last file descriptor referring to it is closed. If the name referred to a symbolic link, the link is removed. If the name referred to a socket, FIFO, or device, the name for
+it is removed but processes which have the object open may continue to use it.
+
+Dup,dup2: https://baulderasec.wordpress.com/programando-2/programacion-con-linux/3-trabajando-con-los-archivos/acceso-de-bajo-nivel-a-archivos/dup-y-dup2/
+
+The isatty() function tests whether fildes, an open file descriptor, is associated with a terminal device.
