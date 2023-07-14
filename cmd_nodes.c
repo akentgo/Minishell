@@ -169,7 +169,7 @@ t_list	*ms_fill(char **args, int i)
 	char	**tmp[2]; //this will be a temporal variable which will work as a holder
 
 	cmd[0] = NULL;
-	tmp[1] = cmd_trim(args); //we hold our arguments trimmed in tmp[1] args lo guarda bien CMD_TRIM no guarda bien las palabras
+	tmp[1] = cmd_trim(args); //we hold our arguments trimmed in tmp[1] args lo guarda bien
 	while (args[++i]) //for each string
 	{
 		cmd[1] = ft_lstlast(cmd[0]); //we set cmd[1] as the last element of the list (NULL at the beginning)

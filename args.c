@@ -5,30 +5,30 @@ extern int	g_status;
 /*
  *	This function create a single matrix from two
  */
-char	**ft_matrix_append(char ***big, char **small, int n)
+char **ft_matrix_append(char ***big, char **small, int n)
 {
-	char	**aux;
-	int		i[3];
+	char **aux;
+	int i[3];
 
 	i[0] = -1; //this is the big matrix counter
 	i[1] = -1; //this is the small matrix counter
 	i[2] = -1; //this is the new matrix counter
-	if (!big || !*big || n < 0 || n >= ft_matrixlen(*big)) //if there is no big matrix, or it is empty, or n is lower than 0 or n is bigger than the big matrix length return NULL (error)
+	if (!big || !*big || n < 0 || n >= ft_matrixlen(*big))
 		return (NULL);
-	aux = malloc(sizeof(char *) * (ft_matrixlen(*big) + ft_matrixlen(small))); //allocate space for the new matrix (maybe we need one more space for the last empty element, not sure, must test
+	aux = malloc(sizeof(char *) * (ft_matrixlen(*big) + ft_matrixlen(small) + 1));
 	if (!aux)
 		return (NULL);
-	while (aux && big[0][++i[0]]) //if aux has been created properly and big has content in it
+	while ((*big)[++i[0]]) //if aux has been created properly and big has content in it
 	{
-		if (i[0] != n) // if the big counter is different from n duplicate each big value into aux
-			aux[++i[2]] = ft_strdup(big[0][i[0]]);
+		if (i[0] != n)
+			aux[++i[2]] = ft_strdup((*big)[i[0]]);
 		else //once we reach n with our big counter
 		{
-			while (small && small[++i[1]]) // if small exist and while it is not empty duplicate every small value into aux
+			while (small && small[++i[1]])
 				aux[++i[2]] = ft_strdup(small[i[1]]);
 		}
 	}
-	//ft_free_matrix(big); //free the big matrix AQUÍ HAY UN PROBLEMA GORDO
+	aux[++i[2]] = NULL;
 	*big = aux; //set the pointer to the new matrix
 	return (*big); //return the matrix
 }
@@ -41,10 +41,10 @@ static char	**split_all(char **args, t_read *r)
 	i = -1;
 	while (args && args[++i])
 	{
-		args[i] = expand_var(args[i], q, -1, r); //Aqui nos salta un segfault
-		args[i] = expand_path(args[i], -1, q, search_env(r->env, "HOME")); //Funciona el expand path
+		args[i] = expand_var(args[i], q, -1, r);
+		args[i] = expand_path(args[i], -1, q, search_env(r->env, "HOME"));
 		splitted = redir_split(args[i], "><|");
-		ft_matrix_append(&args, splitted, i); //falla asqi
+		ft_matrix_append(&args, splitted, i);
 		i += ft_matrixlen(splitted) - 1; //increase the length for i
 		ft_free_matrix(&splitted); //free the split to avoid leaks
 	}
