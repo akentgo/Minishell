@@ -186,8 +186,8 @@ t_list	*ms_fill(char **args, int i)
 		if (!args[i]) //if there is not an args[i] we just break our loop
 			break ;
 	} 
-//	ft_free_matrix(tmp[1]); // free our matrix tmp[1]
-// 	ft_free_matrix(args); //free our matrix args */
+	ft_free_matrix(&tmp[1]); // free our matrix tmp[1]
+ 	ft_free_matrix(&args); //free our matrix args */
 	return (cmd[0]); //return our cmd list
 }
 /*
