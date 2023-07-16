@@ -59,11 +59,17 @@ static void	*parse_args(char **args, t_read *p)
 
 	ex = 0;
 	p->cmd = ms_fill(split_all(args, p), -1);//fill cmd double array with the arguments find this function in cmd_nodes
-	/*if (!p->cmd) //if it is null return null
+	if (!p->cmd) //if it is null return null
 		return (p);
 	i = ft_lstsize(p->cmd); //save the list length
 	//Aqui comprobamos que nos ha guardado el comando bien
-	g_status = builtin(p, p->cmd, &ex, 0); //check builtin function in builtins.c
+	printf("I es = %i\n", i);
+	while(p->cmd)
+	{
+		printf ("El comando es: %s\n", p->cmd->content);
+		p->cmd = p->cmd->next;
+	}
+	/*g_status = builtin(p, p->cmd, &ex, 0); //check builtin function in builtins.c
 	while (i-- > 0) //while there is an element in the list
 		waitpid(-1, &g_status, 0); //wait for any child process whose process group id is equal to 1 (absolute value of the first parameter)
 	if (!ex && g_status == 13) //if is_exit is 0 and the global status is 13 set it to 0
@@ -76,7 +82,7 @@ static void	*parse_args(char **args, t_read *p)
 		return (NULL);
 	}
 	return (p);*/
-	return (NULL);
+	//return (NULL);
 }
 
 void	*check_args(char *out, t_read *p)
