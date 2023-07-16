@@ -29,6 +29,7 @@ char **ft_matrix_append(char ***big, char **small, int n)
 		}
 	}
 	aux[++i[2]] = NULL;
+	ft_free_matrix(big);
 	*big = aux; //set the pointer to the new matrix
 	return (*big); //return the matrix
 }
