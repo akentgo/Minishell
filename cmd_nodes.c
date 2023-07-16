@@ -64,14 +64,14 @@ static t_ms	*get_redir(t_ms *node, char **a[2], int *i)
 	if (a[0][*i]) //if there is a command
 	{
 		if (a[0][*i][0] == '>' && a[0][*i + 1] && a[0][*i + 1][0] == '>'\
-				&& (!a[0][*i + 2][0] || a[0][*i + 2][0] != '>')) //if we have ">>" we must append to or create our outfile (functions in get_files.c)
+				&& a[0][*i + 2] && (!a[0][*i + 2][0] || a[0][*i + 2][0] != '>')) //if we have ">>" we must append to or create our outfile (functions in get_files.c)
 			node = get_of_concat(node, a[1], i);
-		else if (a[0][*i][0] == '>' && a[0][*i + 1][0] != '>') // if we have ">" (and do not have ">>" since the last condition is false we just redirect our output to an outfile
+		else if (a[0][*i][0] == '>' && a[0][*i + 1] && a[0][*i + 1][0] != '>') // if we have ">" (and do not have ">>" since the last condition is false we just redirect our output to an outfile
 			node = get_of_redir(node, a[1], i);
 		else if (a[0][*i][0] == '<' && a[0][*i + 1] && a[0][*i + 1][0] == '<'\
-				&& (!a[0][*i + 2][0] || a[0][*i + 2][0] != '<')) // if we have "<<" we start a heredoc
+				&& a[0][*i + 2] && (!a[0][*i + 2][0] || a[0][*i + 2][0] != '<')) // if we have "<<" we start a heredoc
 			node = get_inf_heredoc(node, a[1], i);
-		else if (a[0][*i][0] == '<' && a[0][*i + 1][0] != '<') // if we have '<' we assign our infile
+		else if (a[0][*i][0] == '<' && a[0][*i + 1] && a[0][*i + 1][0] != '<') // if we have '<' we assign our infile
 			node = get_inf_redir(node, a[1], i);
 		else if (a[0][*i][0] != '|' && a[0][*i][0] != '<' && \
 					a[0][*i][0] != '>') //if we do not have a pipe
@@ -109,12 +109,12 @@ void	check_redir_in(char **a[2], int *i)
 	new_line = ft_strdup("syntax error near unexpected token `"); //set the frist part of the error message
 	n[0] = 0;
 	n[1] = 0;
-	while (a[0][*i + n[0]][0] == '<' && n[0] < 3) //increase our counter n[0] to 3 as far as we find '<'
+	while (a[0][*i + n[0]] && a[0][*i + n[0]][0] == '<' && n[0] < 3) //increase our counter n[0] to 3 as far as we find '<'
 		n[0]++;
 	n[1] = n[0]; //set n[1] to n[0] value
-	while (a[0][*i + n[1]][0] == '<' && n[1] < 6) //from 3 to 6 we increase our counter if we find more '<'
+	while (a[0][*i + n[1]] && a[0][*i + n[1]][0] == '<' && n[1] < 6) //from 3 to 6 we increase our counter if we find more '<'
 		n[1]++;
-	if (n[1] == 3) //if n[1] is 3 it means we found <<< so we set the error message
+	if (n[1] <= 3) //if n[1] is 3 it means we found <<< so we set the error message
 		new_line = ft_strjoin(new_line, "newline'");
 	else //if n is different from 3 (which means it is higher
 	{
@@ -139,12 +139,12 @@ void	check_redir_out(char **a[2], int *i)
 	new_line = ft_strdup("syntax error near unexpected token `");
 	n[0] = 0;
 	n[1] = 0;
-	while (a[0][*i + n[0]][0] == '>' && n[0] < 2)
+	while (a[0][*i + n[0]] && a[0][*i + n[0]][0] == '>' && n[0] < 2)
 		n[0]++;
 	n[1] = n[0];
-	while (a[0][*i + n[1]][0] == '>' && n[1] < 4)
+	while (a[0][*i + n[1]] && a[0][*i + n[1]][0] == '>' && n[1] < 4)
 		n[1]++;
-	if (n[1] == 2)
+	if (n[1] <= 2)
 		new_line = ft_strjoin(new_line, "newline'");
 	else
 	{
@@ -169,7 +169,7 @@ t_list	*ms_fill(char **args, int i)
 	char	**tmp[2]; //this will be a temporal variable which will work as a holder
 
 	cmd[0] = NULL;
-	tmp[1] = cmd_trim(args); //we hold our arguments trimmed in tmp[1] args lo guarda bien CMD_TRIM no guarda bien las palabras
+	tmp[1] = cmd_trim(args); //we hold our arguments trimmed in tmp[1] args lo guarda bien
 	while (args[++i]) //for each string
 	{
 		cmd[1] = ft_lstlast(cmd[0]); //we set cmd[1] as the last element of the list (NULL at the beginning)
