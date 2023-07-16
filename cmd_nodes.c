@@ -59,30 +59,30 @@ static char	**cmd_trim(char	**args)
  * This function will get the params, parsing our outfile, infile and pipes
  */
 
-static t_ms	*get_redir(t_ms **node, char **a[2], int *i)
+static t_ms	*get_redir(t_ms *node, char **a[2], int *i)
 {
 	if (a[0][*i]) //if there is a command
 	{
 		if (a[0][*i][0] == '>' && a[0][*i + 1] && a[0][*i + 1][0] == '>'\
 				&& a[0][*i + 2] && (!a[0][*i + 2][0] || a[0][*i + 2][0] != '>')) //if we have ">>" we must append to or create our outfile (functions in get_files.c)
-			*node = get_of_concat(*node, a[1], i);
+			node = get_of_concat(node, a[1], i);
 		else if (a[0][*i][0] == '>' && a[0][*i + 1] && a[0][*i + 1][0] != '>') // if we have ">" (and do not have ">>" since the last condition is false we just redirect our output to an outfile
-			*node = get_of_redir(*node, a[1], i);
+			node = get_of_redir(node, a[1], i);
 		else if (a[0][*i][0] == '<' && a[0][*i + 1] && a[0][*i + 1][0] == '<'\
 				&& a[0][*i + 2] && (!a[0][*i + 2][0] || a[0][*i + 2][0] != '<')) // if we have "<<" we start a heredoc
-			*node = get_inf_heredoc(*node, a[1], i);
+			node = get_inf_heredoc(node, a[1], i);
 		else if (a[0][*i][0] == '<' && a[0][*i + 1] && a[0][*i + 1][0] != '<') // if we have '<' we assign our infile
-			*node = get_inf_redir(*node, a[1], i);
+			node = get_inf_redir(node, a[1], i);
 		else if (a[0][*i][0] != '|' && a[0][*i][0] != '<' && \
 					a[0][*i][0] != '>') //if we do not have a pipe
-			(*node)->cmd = ft_expand_arr((*node)->cmd, a[1][*i]);
+			*node->cmd = ft_expand_arr(node->cmd, a[1][*i]);
 		else
 			check_redir_caller(a, i);
-		return (*node);
+		return (node);
 	}
 	//ms_error(REDIRERROR, NULL, 2);
 	*i = -2;
-	return (*node);
+	return (node);
 }
 
 /*
