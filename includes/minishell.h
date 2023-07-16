@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/16 13:01:01 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:30:53 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	is_builtin(t_ms *m);
 static t_ms	*ms_init(void);
 static t_list	*clear_ms(t_list *cmd, char **args, char **tmp);
 static char	**cmd_trim(char	**args);
-static t_ms	*get_redir(t_ms **node, char **a[2], int *i);
+static t_ms	*get_redir(t_ms *node, char **a[2], int *i);
 void	check_redir_caller(char **a[2], int *i);
 void	check_redir_in(char **a[2], int *i);
 void	check_redir_out(char **a[2], int *i);
@@ -149,7 +149,7 @@ int	redir_words(char *str, char *sep, int ct);
 static char	**ft_fill_redir(char *str, char **ret, char *sep, int i[3]);
 char	**redir_split(char *str, char *sep);
 
-
+int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
 
 ////////////////// ENVIRONMENT MANAGEMENT FUNCTIONS ///////////////////////
 

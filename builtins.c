@@ -11,7 +11,7 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 
 	while (cmd)
 	{
-		s = cmd->content->cmd;
+		s = cmd->content;
 		n = 0;
 		if (s)
 			n = ft_strlen(s);
@@ -25,16 +25,17 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 			g_status = ms_unset(prompt);
 		else
 		{
+			printf("Ejecutar\n");
 			//
 			//
-			exec_cmd(prompt, cmd);
+			//exec_cmd(prompt, cmd);
 		}
 		cmd = cmd->next;
 	}
 	return (g_status);
 }
 
-int	is_builtin(t_ms *m)
+/*int	is_builtin(t_ms *m)
 {
 	int	len;
 
@@ -60,4 +61,4 @@ int	is_builtin(t_ms *m)
 	if (!ft_strncmp(*m->cmd, "exit", len) && len == 4)
 		return (1);
 	return (0); // in case it is not a builtin return 0
-}
+}*/
