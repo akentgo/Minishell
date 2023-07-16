@@ -5,6 +5,8 @@ extern int	g_status;
 /*
  * This function check if the command is a builtin and send it to execute
  */
+
+//Hay que hacer las builtins
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 {
 	char	**s;
@@ -14,7 +16,7 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 		s = cmd->content;
 		n = 0;
 		if (s)
-			n = ft_strlen(s);
+			n = ft_strlen(*s);
 		if (s && !ft_strncmp(*s, "exit", n) && n == 4)
 			g_status = ms_exit(cmd, is_exit);
 		else if (!cmd->next && s && ft_strncmp(*s, "cd", n) && n == 2)
