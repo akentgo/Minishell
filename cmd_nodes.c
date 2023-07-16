@@ -186,7 +186,7 @@ t_list	*ms_fill(char **args, int i)
 		cmd[1]->content = get_redir(cmd[1]->content, tmp, &i); // we set our content to the result of our get_redir function
 		if (i < 0) //if i has -1 value means taht something went wrong so we free everything and return
 			return (clear_ms(cmd[0], args, tmp[1]));
-		if (!args[i]) //if there is not an args[i] we just break our loop
+		if (!args[i]) //if there is not an args[i] we just break our loop hola
 			break ;
 	}
 	
