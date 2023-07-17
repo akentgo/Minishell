@@ -59,7 +59,7 @@ static void	*parse_args(char **args, t_read *p)
 
 	ex = 0;
 	p->cmd = ms_fill(split_all(args, p), -1);//fill cmd double array with the arguments find this function in cmd_nodes
-	if (!p->cmd) //if it is null return null
+	/*if (!p->cmd) //if it is null return null
 		return (p);
 	i = ft_lstsize(p->cmd); //save the list length
 	//Aqui comprobamos que nos ha guardado el comando bien
@@ -75,8 +75,8 @@ static void	*parse_args(char **args, t_read *p)
 		ft_lstclear(&p->cmd, free_cmd); //free_cmd is in error.c
 		return (NULL);
 	}
-	return (p);
-	//return (NULL);
+	return (p);*/
+	return (NULL);
 }
 
 void	*check_args(char *out, t_read *p)

@@ -80,7 +80,7 @@ static t_ms	*get_redir(t_ms *node, char **a[2], int *i)
 			check_redir_caller(a, i);
 		return (node);
 	}
-	//ms_error(REDIRERROR, NULL, 2);
+	ms_error(REDIRERROR, NULL, 2);
 	*i = -2;
 	return (node);
 }
