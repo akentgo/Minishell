@@ -37,7 +37,7 @@ static t_read	init_vars(t_read prompt, char *str)
 
 	str = getcwd(NULL, 0);
 	str = ft_strjoin ("PWD=", str);
-	export_env(prompt.env, str);
+	ms_export(prompt.env, str);
 	free (str);
 	str = search_env(prompt.env, "SHLVL");
 	if (!str || ft_atoi(str) <= 0)
@@ -46,7 +46,7 @@ static t_read	init_vars(t_read prompt, char *str)
 		n = ft_itoa(ft_atoi(str) + 1);
 	free (str);
 	n = ft_strjoin("SHLVL=", n);
-	export_env(prompt.env, n);
+	ms_export(prompt.env, n);
 	free (n);
 	return (prompt);
 }

@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/17 15:49:50 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:48:38 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,11 @@ int ft_pwd(void);
 //ENV_UTILS2.C//
 void    ft_free_env(t_env *env);
 
-void	ms_export(t_env *env, char *str);
-void	ms_unset(t_env *env, char *str);
+//ENV_UTILS/////
+void    print_all_envs(t_env *env);
+
+int		ms_export(t_env *env, char *str, int zer);
+int		ms_unset(t_env *env, char *str);
 int		env_size(char **env);
 t_env	*new_env();
 void	env_fill(t_env **list, char **env);

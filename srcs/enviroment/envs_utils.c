@@ -30,14 +30,14 @@ int	ft_strcomp(char *a, char *b)
  * the work for unset command (that's why it's unset_env), it shouldn't have
  * any leaks but I haven't tested it
  */
-void	ms_unset(t_env *env, char *str)
+int	ms_unset(t_env *env, char *str)
 {
 	t_env	*holder;
 	t_env	*handler;
 
 	holder = env;
 	if (!env)
-		return ;
+		return (0);
 	while (env->next != NULL)
 	{
 		if (ft_strcomp(env->name, str) == 0)
@@ -50,39 +50,39 @@ void	ms_unset(t_env *env, char *str)
 		}
 		env = env->next;
 	}
-	return ;
+	return (0);
 }
 
 /*
  *	This function will set the new env variable or replace its old value if it already existed
  */
-void	ms_export(t_env *env, char *str)
+int	ms_export(t_env *env, char *str, int i)
 {
 	char	**holder;
-	int		i;
 
-	i = 0;
 	if (!str)
-		return ;
+	{
+		print_all_envs(env);
+		return (0);
+	}
 	holder = ft_split(str, '=');
-	if (!holder[0] || !holder[1] || holder[2] != 0)
+	if (!holder[0] || !holder[1])
 		return ;
 	while (holder[i])
 		i++;
 	if (i != 2)
 		return ;
-	while (env->next != 0)
+	while (env->next)
 	{
 		if (ft_strcomp(env->name, holder[0]))
-			{
 				ft_strreplace(env->value, holder[1]);
-				return ;
-			}
+					return ;
 		env = env->next;
 	}
 	env->next = new_env();
 	env->name = ft_strdup(holder[0]);
 	env->value = ft_strdup(holder[1]);
+	return (0);
 }
 
 /*
