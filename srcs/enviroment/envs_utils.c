@@ -1,4 +1,3 @@
-#include "../../libft/libft.h"
 #include "../../includes/minishell.h"
 
 extern int	g_status;
@@ -31,7 +30,7 @@ int	ft_strcomp(char *a, char *b)
  * the work for unset command (that's why it's unset_env), it shouldn't have
  * any leaks but I haven't tested it
  */
-void	unset_env(t_env *env, char *str)
+void	ms_unset(t_env *env, char *str)
 {
 	t_env	*holder;
 	t_env	*handler;
@@ -57,7 +56,7 @@ void	unset_env(t_env *env, char *str)
 /*
  *	This function will set the new env variable or replace its old value if it already existed
  */
-void	export_env(t_env *env, char *str)
+void	ms_export(t_env *env, char *str)
 {
 	char	**holder;
 	int		i;

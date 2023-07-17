@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 //With this function we count the number of arguments so that we can check later on in the echo function
 static int	nb_args(char **argv)

@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/16 13:01:01 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:52:01 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	is_builtin(t_ms *m);
 static t_ms	*ms_init(void);
 static t_list	*clear_ms(t_list *cmd, char **args, char **tmp);
 static char	**cmd_trim(char	**args);
-static t_ms	*get_redir(t_ms **node, char **a[2], int *i);
+static t_ms	*get_redir(t_ms *node, char **a[2], int *i);
 void	check_redir_caller(char **a[2], int *i);
 void	check_redir_in(char **a[2], int *i);
 void	check_redir_out(char **a[2], int *i);
@@ -149,19 +149,22 @@ int	redir_words(char *str, char *sep, int ct);
 static char	**ft_fill_redir(char *str, char **ret, char *sep, int i[3]);
 char	**redir_split(char *str, char *sep);
 
-
+int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
+int ms_cd(t_read *p);
+void echo(char **argv);
+int ft_pwd(void);
 
 ////////////////// ENVIRONMENT MANAGEMENT FUNCTIONS ///////////////////////
 
 //ENV_UTILS2.C//
 void    ft_free_env(t_env *env);
 
-void	unset_env(t_env *, char *str);
+void	ms_export(t_env *env, char *str);
+void	ms_unset(t_env *env, char *str);
 int		env_size(char **env);
 t_env	*new_env();
 void	env_fill(t_env **list, char **env);
 int		ft_strcomp(char *a, char *b);
-void	export_env(t_env *env, char *str);
 void	print_env(t_env *env);
 void	print_var(t_env *env, char *str);
 t_env	*env_set(char **env);

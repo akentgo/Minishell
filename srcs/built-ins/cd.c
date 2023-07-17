@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdio.h>
+#include "../../includes/minishell.h"
 
 int ms_cd(t_read *p)
 {

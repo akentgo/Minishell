@@ -63,13 +63,7 @@ static void	*parse_args(char **args, t_read *p)
 		return (p);
 	i = ft_lstsize(p->cmd); //save the list length
 	//Aqui comprobamos que nos ha guardado el comando bien
-	printf("I es = %i\n", i);
-	while(p->cmd)
-	{
-		printf ("El comando es: %s\n", p->cmd->content);
-		p->cmd = p->cmd->next;
-	}
-	/*g_status = builtin(p, p->cmd, &ex, 0); //check builtin function in builtins.c
+	g_status = builtin(p, p->cmd, &ex, 0); //check builtin function in builtins.c
 	while (i-- > 0) //while there is an element in the list
 		waitpid(-1, &g_status, 0); //wait for any child process whose process group id is equal to 1 (absolute value of the first parameter)
 	if (!ex && g_status == 13) //if is_exit is 0 and the global status is 13 set it to 0
@@ -81,7 +75,7 @@ static void	*parse_args(char **args, t_read *p)
 		ft_lstclear(&p->cmd, free_cmd); //free_cmd is in error.c
 		return (NULL);
 	}
-	return (p);*/
+	return (p);
 	//return (NULL);
 }
 
