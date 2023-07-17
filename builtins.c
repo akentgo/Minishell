@@ -22,9 +22,9 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 		else if (!cmd->next && s && ft_strncmp(*s, "cd", n) && n == 2)
 			g_status = ms_cd(prompt);
 		else if (!cmd->next && s && ft_strncmp(*s, "export", n) && n == 6)
-			g_status = ms_export(prompt, NULL, 0);
+			g_status = ms_export(prompt->env, NULL, 0);
 		else if (!cmd->next && s && ft_strncmp(*s, "unset", n) && n == 5)
-			g_status = ms_unset(prompt, NULL);
+			g_status = ms_unset(prompt->env, NULL);
 		else
 		{
 			//

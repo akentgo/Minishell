@@ -67,16 +67,16 @@ int	ms_export(t_env *env, char *str, int i)
 	}
 	holder = ft_split(str, '=');
 	if (!holder[0] || !holder[1])
-		return ;
+		return (1);
 	while (holder[i])
 		i++;
 	if (i != 2)
-		return ;
+		return (1);
 	while (env->next)
 	{
 		if (ft_strcomp(env->name, holder[0]))
 				ft_strreplace(env->value, holder[1]);
-					return ;
+					return (1);
 		env = env->next;
 	}
 	env->next = new_env();
