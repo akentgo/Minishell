@@ -75,7 +75,7 @@ static t_ms	*get_redir(t_ms *node, char **a[2], int *i)
 			node = get_inf_redir(node, a[1], i);
 		else if (a[0][*i][0] != '|' && a[0][*i][0] != '<' && \
 					a[0][*i][0] != '>') //if we do not have a pipe
-			*node->cmd = ft_expand_arr(node->cmd, a[1][*i]);
+			node->cmd = ft_expand_arr(node->cmd, a[1][*i]);
 		else
 			check_redir_caller(a, i);
 		return (node);

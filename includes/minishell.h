@@ -83,7 +83,7 @@ int	is_builtin(t_ms *m);
 static t_ms	*ms_init(void);
 static t_list	*clear_ms(t_list *cmd, char **args, char **tmp);
 static char	**cmd_trim(char	**args);
-static t_ms	*get_redir(t_ms **node, char **a[2], int *i);
+static t_ms	*get_redir(t_ms *node, char **a[2], int *i);
 void	check_redir_caller(char **a[2], int *i);
 void	check_redir_in(char **a[2], int *i);
 void	check_redir_out(char **a[2], int *i);

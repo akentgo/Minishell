@@ -82,7 +82,7 @@ static void	*parse_args(char **args, t_read *p)
 		return (NULL);
 	}
 	return (p);*/
-	//return (NULL);
+	return (NULL);
 }
 
 void	*check_args(char *out, t_read *p)
