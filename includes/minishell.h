@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/17 16:48:38 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:14:01 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdio.h>
 # include <limits.h>
 # include <fcntl.h>
+
+int g_status;
 
 //pa borra
 # define SUCCESS 0
@@ -158,6 +160,7 @@ int ft_pwd(void);
 
 //ENV_UTILS2.C//
 void    ft_free_env(t_env *env);
+char *search_env(t_env *env, char *var);
 
 //ENV_UTILS/////
 void    print_all_envs(t_env *env);
