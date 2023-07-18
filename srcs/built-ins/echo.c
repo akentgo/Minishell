@@ -18,7 +18,7 @@ void echo(char **argv)
 
 	if (nb_args(argv) > 1) //if there are more than 1 arguments, so not just echo
 	{
-		while (argv[counter] && ft_strcmp(argv[counter], "-n") == 0) //if the option -n has been read (echo -n) activate the aux variable
+		while (argv[counter] && ft_strcomp(argv[counter], "-n") == 0) //if the option -n has been read (echo -n) activate the aux variable
 		{
 			options = 1;
 			counter++;
