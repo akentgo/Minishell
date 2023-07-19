@@ -74,7 +74,7 @@ void	env_fill(t_env **list, char **env)
 	tmp = *list;
 	while (++i < env_size(env))
 	{
-		holder = ft_split(env[i], '=');
+		holder = ft_split_env(env[i]);
 		tmp->name = ft_strdup(holder[0]);
 		tmp->value = ft_strdup(holder[1]);
 		tmp->next = new_env();

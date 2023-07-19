@@ -16,7 +16,7 @@ int ms_cd(t_read *p)
 	free (aux); //free to avoid leaks
 	cd_error(str); //check if there is an error in str
 	if (!g_status)
-		p->env = export_var(p->env, "OLDPWD", str[1][1]); //*IMPORTANT* have to fix this function format, here or in the function itself // set the OLDPWD var
+		p->env = export_env(p->env, "OLDPWD", str[1][1]); //*IMPORTANT* have to fix this function format, here or in the function itself // set the OLDPWD var
 	aux = getcwd(NULL, 0); //save the current directory in aux
 	if (!aux) //if get_cwd fails save an empty string
 		aux = ft_strdup("");

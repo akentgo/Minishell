@@ -176,4 +176,5 @@ void	print_var(t_env *env, char *str);
 t_env	*env_set(char **env);
 char	*search_env(t_env *env, char *var);
 char	*search_env_len(t_env *env, char *var, int n);
+char    **ft_split_env(char *str);
 #endif

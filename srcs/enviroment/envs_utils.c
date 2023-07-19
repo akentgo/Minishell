@@ -56,22 +56,19 @@ int	ms_unset(t_env *env, char *str)
 /*
  *	This function will set the new env variable or replace its old value if it already existed
  */
-int	ms_export(t_env *env, char *str, int i)
+void	ms_export(t_env *env, char *str, int i)
 {
 	char	**holder;
 
 	if (!str)
-	{
-		print_all_envs(env);
-		return (0);
-	}
+		return(print_all_envs(env));
 	holder = ft_split(str, '=');
-	if (!holder[0] || !holder[1])
-		return (1);
+	if (!holder[0] || !holder[1] || holder[2] != 0)
+		return ;
 	while (holder[i])
 		i++;
 	if (i != 2)
-		return (1);
+		return ;
 	while (env->next)
 	{
 		if (ft_strcomp(env->name, holder[0]))
@@ -82,7 +79,6 @@ int	ms_export(t_env *env, char *str, int i)
 	env->next = new_env();
 	env->name = ft_strdup(holder[0]);
 	env->value = ft_strdup(holder[1]);
-	return (0);
 }
 
 /*
