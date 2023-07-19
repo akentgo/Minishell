@@ -61,7 +61,7 @@ void	ms_export(t_env *env, char *str, int i)
 	char	**holder;
 
 	if (!str)
-		return (print_env(env));
+		return ;
 	holder = ft_split(str, '=');
 	if (!holder[0] || !holder[1] || holder[2] != 0)
 		return ;

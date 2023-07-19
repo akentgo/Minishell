@@ -78,10 +78,8 @@ void	env_fill(t_env **list, char **env)
 		tmp->name = ft_strdup(holder[0]);
 		tmp->value = ft_strdup(holder[1]);
 		tmp->next = new_env();
-	//	printf("%s %s\n", list->name, list->value);
 		tmp = tmp->next;
 	}
-	//printf("Numero de i's->%i\n", i);
 }
 
 /*
@@ -97,5 +95,6 @@ t_env	*env_set(char **env)
 	if (!enviro)
 		return (0);
 	env_fill(&enviro, env);
+	print_env(enviro);
 	return (enviro);
 }
