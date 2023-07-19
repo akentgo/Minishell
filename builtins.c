@@ -7,26 +7,29 @@ extern int	g_status;
  */
 
 //Hay que hacer las builtins
+//No se guarda bien cmd por alguna razón
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 {
 	char	**s;
 
 	while (cmd)
 	{
-		s = cmd->content;
+		s = ((t_ms *)cmd->content)->cmd;
 		n = 0;
+
 		if (s)
 			n = ft_strlen(*s);
 		if (s && !ft_strncmp(*s, "exit", n) && n == 4)
 			g_status = ms_exit(cmd, is_exit);
-		else if (!cmd->next && s && ft_strncmp(*s, "cd", n) && n == 2)
-			g_status = ms_cd(prompt);
-		else if (!cmd->next && s && ft_strncmp(*s, "export", n) && n == 6)
+		/*else if (!cmd->next && s && ft_strncmp(*s, "cd", n) && n == 2)
+			g_status = ms_cd(prompt);*/
+		else if (!cmd->next && s && !ft_strncmp(*s, "export", n) && n == 6)
 			ms_export(prompt->env, NULL, 0);
-		else if (!cmd->next && s && ft_strncmp(*s, "unset", n) && n == 5)
+		else if (!cmd->next && s && !ft_strncmp(*s, "unset", n) && n == 5)
 			ms_unset(prompt->env, NULL);
 		else
 		{
+			printf("No es una builtin\n");
 			//
 			//
 			//exec_cmd(prompt, cmd);
@@ -35,7 +38,14 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 			g_status = 0;
 		cmd = cmd->next;
 	}
+	printf("G_Status->%i\n", g_status);
 	return (g_status);
+}
+
+int	ms_exit(t_list *cmd, int *is_status)
+{
+	printf("Eh estoy en ms_exit\n");
+	return (1);
 }
 
 /*int	is_builtin(t_ms *m)

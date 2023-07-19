@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/17 17:14:01 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:05:46 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,8 @@ static char	**ft_fill_redir(char *str, char **ret, char *sep, int i[3]);
 char	**redir_split(char *str, char *sep);
 
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
-int ms_cd(t_read *p);
-void echo(char **argv);
+//int ms_cd(t_read *p);
+int echo(char **argv);
 int ft_pwd(void);
 
 ////////////////// ENVIRONMENT MANAGEMENT FUNCTIONS ///////////////////////
@@ -164,6 +164,9 @@ char *search_env(t_env *env, char *var);
 
 //ENV_UTILS/////
 void    print_all_envs(t_env *env);
+
+//builtin.c
+int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
 
 void	ms_export(t_env *env, char *str, int zer);
 int		ms_unset(t_env *env, char *str);

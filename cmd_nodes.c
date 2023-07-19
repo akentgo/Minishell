@@ -171,8 +171,6 @@ t_list	*ms_fill(char **args, int i)
 	cmd[0] = NULL;
 	tmp[1] = cmd_trim(args); //we hold our arguments trimmed in tmp[1] args lo guarda bien
 	int j = -1;
-	while (tmp[1][++j])
-		printf("Cmd = %s\n", tmp[1][j]);
 	while (args[++i]) //for each string
 	{
 		cmd[1] = ft_lstlast(cmd[0]); //we set cmd[1] as the last element of the list (NULL at the beginning)
@@ -189,7 +187,6 @@ t_list	*ms_fill(char **args, int i)
 		if (!args[i]) //if there is not an args[i] we just break our loop hola
 			break ;
 	}
-	
 	ft_free_matrix(&tmp[1]); // free our matrix tmp[1]
  	ft_free_matrix(&args); //free our matrix args */
 	return (cmd[0]); //return our cmd list

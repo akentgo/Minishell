@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "../../includes/minishell.h"
 
-int ms_cd(t_read *p)
+/*int ms_cd(t_read *p)
 {
 	char	**str[2];
 	char	*aux; //this will be an auxiliary string
@@ -25,4 +25,4 @@ int ms_cd(t_read *p)
 	p->env = export_env(p->env, "PWD", str[1][2]); //*IMPORTANT* have to fix this function format here or in the function itself // set the new PWD var // IGUAL QUE LA LINEA 19
 	ft_free_matrix(&str[1]);  //free str[1] to avoid leaks
 	return (g_status); //return the status
-}
+}*/

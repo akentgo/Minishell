@@ -59,10 +59,9 @@ static void	*parse_args(char **args, t_read *p)
 
 	ex = 0;
 	p->cmd = ms_fill(split_all(args, p), -1);//fill cmd double array with the arguments find this function in cmd_nodes
-	/*if (!p->cmd) //if it is null return null
+	if (!p->cmd) //if it is null return null
 		return (p);
 	i = ft_lstsize(p->cmd); //save the list length
-	//Aqui comprobamos que nos ha guardado el comando bien
 	g_status = builtin(p, p->cmd, &ex, 0); //check builtin function in builtins.c
 	while (i-- > 0) //while there is an element in the list
 		waitpid(-1, &g_status, 0); //wait for any child process whose process group id is equal to 1 (absolute value of the first parameter)
@@ -75,7 +74,7 @@ static void	*parse_args(char **args, t_read *p)
 		ft_lstclear(&p->cmd, free_cmd); //free_cmd is in error.c
 		return (NULL);
 	}
-	return (p);*/
+	return (p);
 	return (NULL);
 }
 
@@ -104,7 +103,6 @@ void	*check_args(char *out, t_read *p)
 	if (p && p->cmd && n && n->cmd && ft_lstlen(p->cmd) == 1) // if n and p exist and cmd has a length of 1 we save the last command executed in env variable
 		export_last_cmd(p->env, "_", n->cmd[ft_matrixlen(n->cmd) - 1]); //export_last_cmd is in envs_utils.c
 	if (p && p->cmd)
-		ft_lstclear(&p->cmd, free_cmd); //clear p->cmd to avoid leaks, free_cmd is in error.c
-	return (p);*/
-	return (NULL);
+		ft_lstclear(&p->cmd, free_cmd);*/ //clear p->cmd to avoid leaks, free_cmd is in error.c
+	return (p);
 }
