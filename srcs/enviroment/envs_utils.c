@@ -72,8 +72,10 @@ void	ms_export(t_env *env, char *str, int i)
 	while (env->next)
 	{
 		if (ft_strcomp(env->name, holder[0]))
-				ft_strreplace(env->value, holder[1]);
-					return (1);
+		{
+			ft_strreplace(env->value, holder[1]);
+			return ;
+		}
 		env = env->next;
 	}
 	env->next = new_env();

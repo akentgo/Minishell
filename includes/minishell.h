@@ -165,7 +165,7 @@ char *search_env(t_env *env, char *var);
 //ENV_UTILS/////
 void    print_all_envs(t_env *env);
 
-int		ms_export(t_env *env, char *str, int zer);
+void	ms_export(t_env *env, char *str, int zer);
 int		ms_unset(t_env *env, char *str);
 int		env_size(char **env);
 t_env	*new_env();

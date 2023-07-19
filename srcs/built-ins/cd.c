@@ -16,13 +16,13 @@ int ms_cd(t_read *p)
 	free (aux); //free to avoid leaks
 	cd_error(str); //check if there is an error in str
 	if (!g_status)
-		p->env = export_env(p->env, "OLDPWD", str[1][1]); //*IMPORTANT* have to fix this function format, here or in the function itself // set the OLDPWD var
+		p->env = export_env(p->env, "OLDPWD", str[1][1]); //*IMPORTANT* have to fix this function format, here or in the function itself // set the OLDPWD var // MAS IMPORTANTE, AQUÍ NO VA EXPORT_ENV VA OTRA FUNCION XD
 	aux = getcwd(NULL, 0); //save the current directory in aux
 	if (!aux) //if get_cwd fails save an empty string
 		aux = ft_strdup("");
 	str[1] = ft_expand_arr(str[1], aux); //extend the matrix in str[1] with aux content
 	free (aux);
-	p->env = export_env(p->env, "PWD", str[1][2]); //*IMPORTANT* have to fix this function format here or in the function itself // set the new PWD var
+	p->env = export_env(p->env, "PWD", str[1][2]); //*IMPORTANT* have to fix this function format here or in the function itself // set the new PWD var // IGUAL QUE LA LINEA 19
 	ft_free_matrix(&str[1]);  //free str[1] to avoid leaks
 	return (g_status); //return the status
 }
