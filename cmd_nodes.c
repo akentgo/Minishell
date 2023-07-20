@@ -91,7 +91,6 @@ static t_ms	*get_redir(t_ms *node, char **a[2], int *i)
 
 void	check_redir_caller(char **a[2], int *i)
 {
-	printf("llegamos al caller\n");
 	if (a[0][*i][0] == '>')
 		check_redir_out(a, i);
 	else if (a[0][*i][0] == '<')

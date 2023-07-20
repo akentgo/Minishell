@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <readline/readline.h>
+# include <dirent.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -152,7 +153,7 @@ static char	**ft_fill_redir(char *str, char **ret, char *sep, int i[3]);
 char	**redir_split(char *str, char *sep);
 
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
-//int ms_cd(t_read *p);
+int ms_cd(t_read *p);
 int echo(char **argv);
 int ft_pwd(void);
 
@@ -168,6 +169,7 @@ void    print_all_envs(t_env *env);
 //builtin.c
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
 
+char	*set_var(char *name, char *value);
 void	ms_export(t_env *env, char *str, int zer);
 int		ms_unset(t_env *env, char *str);
 int		env_size(char **env);

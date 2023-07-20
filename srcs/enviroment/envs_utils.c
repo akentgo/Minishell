@@ -73,18 +73,14 @@ void	ms_export(t_env *env, char *str, int i)
 	{
 		if (!ft_strcomp(env->name, holder[0]))
 		{
-			printf ("hemos remplazao\n\n");
 			ft_strreplace(&(env->value), holder[1]);
 			return ;
 		}
 		env = env->next;
 	}
-	printf ("hemos llegao\n\n");
 	env->next = new_env();
 	env->name = ft_strdup(holder[0]);
 	env->value = ft_strdup(holder[1]);
-	printf("variable -> %s\n\n", env->name);
-	printf("valor -> %s\n\n", env->value);
 }
 
 /*

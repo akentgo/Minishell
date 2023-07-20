@@ -52,7 +52,7 @@ void	*ms_error(int err_code, char *param, int err)
 /*
  *	This function will check for errors during cd execution
  */
-/*void	cd_error(char **str[2]) //str[0] is the full command, str[1] is 
+void	cd_error(char **str[2]) //str[0] is the full command, str[1] is 
 {
 	DIR	*dir;
 
@@ -74,7 +74,7 @@ void	*ms_error(int err_code, char *param, int err)
 		ms_error(NOT_DIR, str[0][1], 1);
 	if (str[0][1] && dir) //if str[0] has an argument and dir exists, close dir
 		closedir(dir);
-}*/
+}
 
 /*
  *	This function will free completely a node from our cmd list

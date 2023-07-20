@@ -82,6 +82,20 @@ void	env_fill(t_env **list, char **env)
 	}
 }
 
+char	*set_var(char *name, char *value)
+{
+	char	*new;
+	char	*aux;
+
+	if (!name || !value)	
+		return (NULL);
+	aux = ft_strjoin(name, "=");
+	new = ft_strjoin(aux, value);
+	free (aux);
+	return (new);
+
+}
+
 /*
  * this is the main function, first allocate memory for the first element
  * create the list starting from it and print every list element as env 
@@ -95,6 +109,5 @@ t_env	*env_set(char **env)
 	if (!enviro)
 		return (0);
 	env_fill(&enviro, env);
-	print_env(enviro);
 	return (enviro);
 }
