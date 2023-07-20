@@ -111,7 +111,7 @@ static void	*child_redir(t_list *cmd, int fd[2]);
 void	*child_process(t_read *prompt, t_list *cmd, int fd[2]);
 
 //EXPANDER.C//
-void	ft_strreplace(char *s1, char *s2);
+void	ft_strreplace(char **s1, char *s2);
 int	ft_strchr_r(const char *str, char *check);
 char	*expand_path(char *str, int i, int qte[2], char *value);
 char	*expand_var(char *str, int qte[2], int i, t_read *rd);

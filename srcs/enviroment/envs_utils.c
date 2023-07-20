@@ -62,25 +62,29 @@ void	ms_export(t_env *env, char *str, int i)
 
 	if (!str)
 		return ;
-	holder = ft_split(str, '=');
-	if (!holder[0] || !holder[1] || holder[2] != 0)
+	holder = ft_split_env(str);
+	if (!holder || !holder[0] || !holder[1] || holder[2] != NULL)
 		return ;
-	while (holder[i])
+	while (holder[i] != NULL)
 		i++;
 	if (i != 2)
 		return ;
 	while (env->next)
 	{
-		if (ft_strcomp(env->name, holder[0]))
+		if (!ft_strcomp(env->name, holder[0]))
 		{
-			ft_strreplace(env->value, holder[1]);
+			printf ("hemos remplazao\n\n");
+			ft_strreplace(&(env->value), holder[1]);
 			return ;
 		}
 		env = env->next;
 	}
+	printf ("hemos llegao\n\n");
 	env->next = new_env();
 	env->name = ft_strdup(holder[0]);
 	env->value = ft_strdup(holder[1]);
+	printf("variable -> %s\n\n", env->name);
+	printf("valor -> %s\n\n", env->value);
 }
 
 /*
@@ -139,7 +143,7 @@ void	export_last_cmd(t_env *env, char *s1, char *s2)
 	{
 		if (ft_strcomp(env->name, s1))
 			{
-				ft_strreplace(env->value, s2);
+				ft_strreplace(&(env->value), s2);
 				return ;
 			}
 		env = env->next;

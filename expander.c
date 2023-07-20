@@ -6,12 +6,12 @@ extern int	g_status;
  * This function puts a string (s2) into another one (s1), freeing the first one
  */
 
-void	ft_strreplace(char *s1, char *s2)
+void	ft_strreplace(char **s1, char *s2)
 {
 	char	*sdup;
 	
 	sdup = ft_strdup(s2);
-	s1 = sdup;
+	*s1 = sdup;
 	return;
 }
 
