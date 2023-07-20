@@ -38,17 +38,21 @@ int	ms_unset(t_env *env, char *str)
 	holder = env;
 	if (!env)
 		return (0);
+	printf("Str->%s\n", str);
 	while (env->next != NULL)
 	{
-		if (ft_strcomp(env->name, str) == 0)
+		if (!ft_strcomp(env->next->name, str))
 		{
-			free(env->name);
-			free(env->value);
-			handler = env;
-			env = env->next;
+			printf("Found you\n");
+			free(env->next->name);
+			free(env->next->value);
+			handler = env->next;
+			env->next = env->next->next;
 			free (handler);
+			return (0);
 		}
-		env = env->next;
+		else
+			env = env->next;
 	}
 	return (0);
 }
@@ -60,11 +64,12 @@ void	ms_export(t_env *env, char *str, int i)
 {
 	char	**holder;
 
-	if (!str)
-		return ;
+	printf("In export\n");
 	holder = ft_split_env(str);
 	if (!holder || !holder[0] || !holder[1] || holder[2] != NULL)
 		return ;
+	printf("Holder0 = %s\n", holder[0]);
+	printf("Holder1 = %s\n", holder[1]);
 	while (holder[i] != NULL)
 		i++;
 	if (i != 2)

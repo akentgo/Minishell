@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/19 18:20:42 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:59:44 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,4 +182,6 @@ t_env	*env_set(char **env);
 char	*search_env(t_env *env, char *var);
 char	*search_env_len(t_env *env, char *var, int n);
 char    **ft_split_env(char *str);
+
+void	print_empty_env(t_env *env);
 #endif

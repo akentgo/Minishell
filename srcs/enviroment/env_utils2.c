@@ -29,3 +29,14 @@ char    **ft_split_env(char *str)
     split[2] = NULL;
     return (split);
 }
+
+void	print_empty_env(t_env *env)
+{
+	if (!env)
+		return ;
+	while (env->next)
+	{
+		printf("declare -x %s=%s\n", env->name, env->value);
+		env = env->next;
+	}
+}

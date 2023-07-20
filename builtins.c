@@ -13,9 +13,9 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 	char	**s;
 	int		i;
 
-	i = -1;
 	while (cmd)
 	{
+		i = 0;
 		s = ((t_ms *)cmd->content)->cmd;
 		n = 0;
 		if (s)
@@ -26,11 +26,19 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 			g_status = ms_cd(prompt);
 		else if (!cmd->next && s && !ft_strncmp(*s, "export", n) && n == 6)
 		{
+			if (!s[i + 1])
+				print_empty_env(prompt->env);
+			i--;
 			while (s[++i])
 				ms_export(prompt->env, s[i], 0);
 		}
 		else if (!cmd->next && s && !ft_strncmp(*s, "unset", n) && n == 5)
-			ms_unset(prompt->env, NULL);
+		{
+			while (s[++i])
+				ms_unset(prompt->env, s[i]);
+		}
+		else if (!cmd->next && s && !ft_strncmp(*s, "env", n) && n == 3)
+			print_env(prompt->env);
 		else
 		{
 			printf("No es una builtin\n");
@@ -42,8 +50,6 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 			g_status = 0;
 		cmd = cmd->next;
 	}
-	print_env(prompt->env);
-	printf("G_Status->%i\n", g_status);
 	return (g_status);
 }
 
