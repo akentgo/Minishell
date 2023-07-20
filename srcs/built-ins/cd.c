@@ -8,22 +8,24 @@ int ms_cd(t_read *p)
 	char	*aux; //this will be an auxiliary string
 	
 	g_status = 0;
-	str[0] = p->cmd->content; //set str[0] to the full command
+	str[0] = ((t_ms *)p->cmd->content)->cmd; //set str[0] to the full command
 	aux = search_env(p->env, "HOME"); //set aux to the variable HOME value
 	if (!aux) //in case there is no aux at this point, save it as an empty string to avoid problems freeing later
 		aux = ft_strdup("");
 	str[1] = ft_expand_arr(NULL, aux); //set aux as a matrix in str[1]
 	free (aux); //free to avoid leaks
+	aux = getcwd(NULL, 0); //save the current directory in aux
+	str[1] = ft_expand_arr(str[1], aux);
+	free(aux);
 	cd_error(str); //check if there is an error in str
 	if (!g_status)
 		ms_export(p->env, set_var("OLDPWD", str[1][1]), 0); //*IMPORTANT* have to fix this function format, here or in the function itself // set the OLDPWD var // MAS IMPORTANTE, AQUÍ NO VA EXPORT_ENV VA OTRA FUNCION XD
-	aux = getcwd(NULL, 0); //save the current directory in aux
+	aux = getcwd(NULL, 0);
 	if (!aux) //if get_cwd fails save an empty string
 		aux = ft_strdup("");
 	str[1] = ft_expand_arr(str[1], aux); //extend the matrix in str[1] with aux content
 	free (aux);
 	ms_export(p->env, set_var("PWD", str[1][2]), 0); //*IMPORTANT* have to fix this function format here or in the function itself // set the new PWD var // IGUAL QUE LA LINEA 19
 	ft_free_matrix(&str[1]);  //free str[1] to avoid leaks
-	print_var(p->env, "PWD");
 	return (g_status); //return the status
 }
