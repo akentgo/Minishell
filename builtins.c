@@ -7,7 +7,6 @@ extern int	g_status;
  */
 
 //Hay que hacer las builtins
-//No se guarda bien cmd por alguna razón
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 {
 	char	**s;
@@ -46,7 +45,7 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 			//
 			//exec_cmd(prompt, cmd);
 		}
-		if(ft_strncmp(*s, "export", n) || ft_strncmp(*s, "unset", n))
+		if((!ft_strncmp(*s, "export", n) && n == 6) || (!ft_strncmp(*s, "unset", n) && n == 5))
 			g_status = 0;
 		cmd = cmd->next;
 	}
