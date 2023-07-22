@@ -1,6 +1,6 @@
 NAME = minishell
 
-HEADER = minishell.h
+#HEADER = minishell.h
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -13,14 +13,16 @@ OBJS = $(SRC_FILES:.c=.o)
 
 CC = gcc
 
+INCLUDE_DIRS = -L /Users/akent-go/.brew/opt/readline
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ make -C libft/
-	@ $(CC) -I $(HEADER) $(OBJS) -lreadline $(LIBFT) -o $(NAME)
+	@ $(CC) -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(OBJS) -lreadline $(LIBFT) -o $(NAME)
 
 %.o: %.c
-	@ $(CC) -c $< -o $@
+	@ $(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

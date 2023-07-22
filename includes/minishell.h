@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/20 16:59:44 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:12:30 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 
 # include "../libft/libft.h"
 # include <readline/readline.h>
+# include <readline/history.h>
 # include <dirent.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <signal.h>
+# include <sys/ioctl.h>
 
 int g_status;
 
@@ -184,4 +187,6 @@ char	*search_env_len(t_env *env, char *var, int n);
 char    **ft_split_env(char *str);
 
 void	print_empty_env(t_env *env);
+void    sg_handle(int signal);
+
 #endif

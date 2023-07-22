@@ -83,8 +83,8 @@ int	main(int argc, char **argv, char **env)
 	
 	while (1)
 	{
-		// aqui van las señales
-		//
+		signal(SIGINT, sg_handle);
+		signal(SIGQUIT, SIG_IGN);
 		out = readline("El Nano🇪🇸 $ ");
 		/*Funciones que faltan por hacer
 			clear_cmd->cmd_nodes.c		hecha, es clear_mms		ft_free_matrix->cmd_nodes.c Hecha (error.c)
@@ -95,3 +95,4 @@ int	main(int argc, char **argv, char **env)
 	}
 	exit(g_status);
 }
+
