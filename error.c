@@ -8,29 +8,30 @@ extern int	g_status;
 void	*ms_error(int err_code, char *param, int err)
 {
 	g_status = err;
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(param, 2);
 	if (err_code == QUOTE)
-		ft_putstr_fd("minishell: error while looking for matching quote\n", 2);
+		ft_putendl_fd("error while looking for matching quote\n", 2);
 	else if (err_code == NODIR)
-		ft_putstr_fd("minishell: No such file or directoy: ", 2);
+		ft_putendl_fd(": no such file or directoy:", 2);
 	else if (err_code == NOPERM)
-		ft_putstr_fd("minishell: permission denied: ", 2);
+		ft_putendl_fd("permission denied:", 2);
 	else if (err_code == NCMD)
-		ft_putstr_fd("minishell: command not found: ", 2);
+		ft_putendl_fd("command not found:", 2);
 	else if (err_code == DUPERROR)
-		ft_putstr_fd("minishell: dup2 failed", 2);
+		ft_putendl_fd("dup2 failed", 2);
 	else if (err_code == FORKERROR)
-		ft_putstr_fd("minishell: fork failed\n", 2);
+		ft_putendl_fd("fork failed\n", 2);
 	else if (err_code == PIPERROR)
-		ft_putstr_fd("minishell: error creating pipe\n", 2);
+		ft_putendl_fd("error creating pipe\n", 2);
 	else if (err_code == PIPENDERROR)
-		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
+		ft_putendl_fd("syntax error near unexpected token `|'\n", 2);
 	else if (err_code == MEM)
-		ft_putstr_fd("minishell: not memory left on device\n", 2);
+		ft_putendl_fd("not memory left on device\n", 2);
 	else if (err_code == IS_DIR)
-		ft_putstr_fd("minishell: Is a directory: ", 2);
+		ft_putendl_fd(": Is a directory:", 2);
 	else if (err_code == NOT_DIR)
-		ft_putstr_fd("minishell: Not a directory: ", 2);
-	ft_putendl_fd(param, 2);
+		ft_putendl_fd(": Not a directory:", 2);
 	return (0);
 }
 

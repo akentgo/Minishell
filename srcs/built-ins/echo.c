@@ -1,37 +1,29 @@
 #include "../../includes/minishell.h"
 
-//With this function we count the number of arguments so that we can check later on in the echo function
-static int	nb_args(char **argv)
+int ms_echo(t_list *cmd)
 {
-	unsigned int size;
+	char	**argv;
+	t_ms	*n;
+	int		i[3];
 
-	size = 0;
-	while (argv[size])
-		size++;
-	return (size);
-}
-
-int ms_echo(char **argv)
-{
-	unsigned int 	counter = 1;
-	int				options = 0;
-
-	if (nb_args(argv) > 1) //if there are more than 1 arguments, so not just echo
+	i[0] = 0;
+	i[1] = 0;
+	i[2] = 1;
+	n = cmd->content;
+	argv = n->cmd;
+	while (argv && argv[++i[0]])
 	{
-		while (argv[counter] && ft_strcomp(argv[counter], "-n") == 0) //if the option -n has been read (echo -n) activate the aux variable
+		if (!i[1] && !ft_strncmp(argv[i[0]], "-n", 2) && ft_strlen(argv[i[0]]) == 2)
+			i[2] = 0;
+		else
 		{
-			options = 1;
-			counter++;
-		}
-		while (argv[counter]) //this is the base echo command
-		{
-			ft_putstr_fd(argv[counter], 1);
-			if (argv[counter + 1] && argv[counter][0] != '\0')
-				write(1, " ", 1);
-			counter++;
+			i[1] = 1;
+			ft_putstr_fd(argv[i[0]], 1);
+			if (argv[i[0] + 1])
+				ft_putchar_fd(' ', 1);
 		}
 	}
-	if (options == 0)
+	if(i[2])
 		write(1, "\n", 1);
-	return (SUCCESS); //definimos success en la .h con valor 0
+	return (0);
 }

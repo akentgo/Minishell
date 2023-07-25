@@ -161,7 +161,7 @@ char	**redir_split(char *str, char *sep);
 
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
 int ms_cd(t_read *p);
-int ms_echo(char **argv);
+int ms_echo(t_list *cmd);
 int ms_pwd(void);
 
 //EXEC_CMD.C//
