@@ -9,7 +9,6 @@ extern int	g_status;
 int	get_fd(int oldfd, char *path, int flag[2])
 {
 	int	fd;
-	printf("llegamos al fd\n");
 	if (oldfd > 2) //if we got an old file descriptor we close it
 		close (oldfd);
 	if (!path)
