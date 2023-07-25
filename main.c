@@ -79,7 +79,6 @@ int	main(int argc, char **argv, char **env)
 
 	//atexit(ft_leaks);
 	prompt = init_prompt(env);
-	//printf("%s\n", search_env(prompt.env, "USER"));
 	
 	while (1)
 	{

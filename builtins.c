@@ -40,7 +40,6 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 			print_env(prompt->env);
 		else
 		{
-			//printf("No es una builtin\n");
 			signal(SIGINT, SIG_IGN);
 			signal(SIGQUIT, SIG_IGN);
 			exec_cmd(prompt, cmd);

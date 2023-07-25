@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/22 10:12:30 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:57:37 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,9 @@ char *search_env(t_env *env, char *var);
 static DIR  *cmd_check(t_read *p, t_list *cmd, char ***str, char *path);
 void    get_cmd(t_read *p, t_list *cmd, char **str, char *path);
 void    *exec_cmd(t_read *p, t_list *cmd);
+
+//utils.c
+char    **turn_into_arr(t_env *envs);
 
 ////////////////// ENVIRONMENT MANAGEMENT FUNCTIONS ///////////////////////
 

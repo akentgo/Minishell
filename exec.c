@@ -8,10 +8,13 @@
 
 void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 {
-	//
-	//
+	char **envs;
+
+	envs = turn_into_arr(p->env);
+	signal(SIGINT,SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (!is_builtin(n) && n->cmd)
-		execve(n->path, n->cmd, p->env); //esto hay que arreglarlo porque el env tiene que ser un char **
+		execve(n->path, n->cmd, envs);
 	else if (n->cmd && !ft_strncmp(*n->cmd, "pwd", l) && l == 3)
 		g_status = ms_pwd();
 	else if (is_builtin(n) && n->cmd && !ft_strncmp(*n->cmd, "echo", l) && \
@@ -23,6 +26,7 @@ void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 		g_status = 0;
 		print_env(p->env);
 	}
+	free(envs);
 }
 
 /*
