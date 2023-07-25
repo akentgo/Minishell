@@ -64,12 +64,9 @@ void	ms_export(t_env *env, char *str, int i)
 {
 	char	**holder;
 
-	printf("In export\n");
 	holder = ft_split_env(str);
 	if (!holder || !holder[0] || !holder[1] || holder[2] != NULL)
 		return ;
-	printf("Holder0 = %s\n", holder[0]);
-	printf("Holder1 = %s\n", holder[1]);
 	while (holder[i] != NULL)
 		i++;
 	if (i != 2)
