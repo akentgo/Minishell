@@ -51,6 +51,8 @@ int g_status;
 # define NCMD 13
 # define INFILE 0
 # define OUTFILE 1
+# define READ_FD 0
+# define WRITE_FD 1
 
 //Structure for enviroment variables, they contain a value and a pointer to the next variable.
 typedef struct s_env
@@ -113,6 +115,8 @@ char	**dup_matrix(char **matrix);
 void	child_builtin(t_read *prompt, t_ms *m, int l, t_list *cmd);
 static void	*child_redir(t_list *cmd, int fd[2]);
 void	*child_process(t_read *prompt, t_list *cmd, int fd[2]);
+void	exec_fork(t_read *p, t_list *cmd, int fd[2]);
+void	*check_to_fork(t_read *p, t_list *cmd, int fd[2]);
 
 //EXPANDER.C//
 void	ft_strreplace(char **s1, char *s2);
@@ -157,14 +161,20 @@ char	**redir_split(char *str, char *sep);
 
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
 int ms_cd(t_read *p);
-int echo(char **argv);
-int ft_pwd(void);
+int ms_echo(char **argv);
+int ms_pwd(void);
+
+//EXEC_CMD.C//
+static char *find_command(char **env_path, char *cmd, char *path);
+char *search_env(t_env *env, char *var);
+static DIR  *cmd_check(t_read *p, t_list *cmd, char ***str, char *path);
+void    get_cmd(t_read *p, t_list *cmd, char **str, char *path);
+void    *exec_cmd(t_read *p, t_list *cmd);
 
 ////////////////// ENVIRONMENT MANAGEMENT FUNCTIONS ///////////////////////
 
 //ENV_UTILS2.C//
 void    ft_free_env(t_env *env);
-char *search_env(t_env *env, char *var);
 
 //ENV_UTILS/////
 void    print_all_envs(t_env *env);

@@ -11,7 +11,7 @@ static int	nb_args(char **argv)
 	return (size);
 }
 
-int echo(char **argv)
+int ms_echo(char **argv)
 {
 	unsigned int 	counter = 1;
 	int				options = 0;

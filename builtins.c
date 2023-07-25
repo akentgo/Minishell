@@ -40,11 +40,10 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 			print_env(prompt->env);
 		else
 		{
-			printf("No es una builtin\n");
+			//printf("No es una builtin\n");
 			signal(SIGINT, SIG_IGN);
 			signal(SIGQUIT, SIG_IGN);
-			//
-			//exec_cmd(prompt, cmd);
+			exec_cmd(prompt, cmd);
 		}
 		if((!ft_strncmp(*s, "export", n) && n == 6) || (!ft_strncmp(*s, "unset", n) && n == 5))
 			g_status = 0;
@@ -59,7 +58,7 @@ int	ms_exit(t_list *cmd, int *is_status)
 	return (1);
 }
 
-/*int	is_builtin(t_ms *m)
+int	is_builtin(t_ms *m)
 {
 	int	len;
 
@@ -85,4 +84,4 @@ int	ms_exit(t_list *cmd, int *is_status)
 	if (!ft_strncmp(*m->cmd, "exit", len) && len == 4)
 		return (1);
 	return (0); // in case it is not a builtin return 0
-}*/
+}
