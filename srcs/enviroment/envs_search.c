@@ -26,7 +26,7 @@ char *search_env(t_env *env, char *var)
 {
 	char	*holder;
 
-	while (env->name)
+	while (env && env->name)
 	{
 		if (ft_strncmp(env->name, var, ft_strlen(env->name)) == 0)
 		{

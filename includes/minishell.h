@@ -141,7 +141,7 @@ t_ms	*get_inf_redir(t_ms *node, char **args, int *i);
 t_ms	*get_inf_heredoc(t_ms *node, char **args, int *i);
 
 //HEREDOC.C//
-char	*get_heredoc_str(char *str[2], size_t len, char *lim);
+char	*get_heredoc_str(char *str[2], size_t len, char *lim, char *warning);
 int	get_heredoc(char *str[2], char *aux[2]);
 
 //LEXER.C//
