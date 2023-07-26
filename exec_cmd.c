@@ -83,7 +83,7 @@ static DIR  *cmd_check(t_read *p, t_list *cmd, char ***str, char *path)
         free (path); //free the full path
         n->path = find_command(*str, *n->cmd, n->path); //find the right path for the command
         if (!n->path || !n->cmd[0] || !n->cmd[0][0]) //if we do not have a path or a command send "it is not a command" error
-            ms_error(NOCMD, *n->cmd, 127);
+            ms_error(NCMD, *n->cmd, 127);
     }
     return (dir);
 }

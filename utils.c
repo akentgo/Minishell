@@ -23,6 +23,5 @@ char    **turn_into_arr(t_env *envs)
         word_ct++;
         envs = envs->next;
     }
-    
     return (res);
 }

@@ -50,13 +50,13 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 	}
 	return (g_status);
 }
-
+/*
 int	ms_exit(t_list *cmd, int *is_status)
 {
 	printf("Eh estoy en ms_exit\n");
 	return (1);
 }
-
+*/
 int	is_builtin(t_ms *m)
 {
 	int	len;

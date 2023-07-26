@@ -24,7 +24,7 @@ int	get_fd(int oldfd, char *path, int flag[2])
 	else if(flag[0] && !flag[1]) //if we received > we do the same but with trunc option, overwriting it
 		fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	else if (!flag[0] && oldfd != -1) //if we did not receive > or >> and our oldfd is valid
-		fd = open (path,O_RDONLY); //open the fd with read permissions
+		fd = open (path, O_RDONLY); //open the fd with read permissions
 	else
 		fd = oldfd; //otherwise we set fd to our oldfd
 	return (fd);

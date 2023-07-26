@@ -3,35 +3,6 @@
 extern int	g_status;
 
 /*
- * this function take the env structure and turn it into a char ** so it can be
- * used in execv command
- */
-char	**env_to_str(t_env *env)
-{
-	char	**new_env;
-	t_env	*holder;
-	int		i;
-
-	holder = env;
-	i = 0;
-	while (env->next)
-	{
-		i++;
-		env = env->next;
-	}
-	new_env = malloc(sizeof(char *) * i + 1);
-	i = 0;
-	while (holder->next)
-	{
-		new_env[i] = ft_strjoin(holder->name, "=");
-		new_env[i] = ft_strjoin(new_env[i], holder->value);
-		i++;
-		holder = holder->next;
-	}
-	return (new_env);
-}
-
-/*
  * this function returns the number of env variables existing
  */
 int	env_size(char **env)

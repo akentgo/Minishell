@@ -9,7 +9,7 @@ void	*ms_error(int err_code, char *param, int err)
 {
 	g_status = err;
 	if (err_code == QUOTE)
-		ft_putstr_fd("minishell: error while looking for matching quote\n", 2);
+		ft_putstr_fd("minishell: error while looking for matching quote", 2);
 	else if (err_code == NODIR)
 		ft_putstr_fd("minishell: No such file or directoy: ", 2);
 	else if (err_code == NOPERM)
@@ -34,20 +34,61 @@ void	*ms_error(int err_code, char *param, int err)
 	return (0);
 }
 
-/*int	ms_exit(t_list *cmd, int *ex)
+int	ft_atoi_mod(const char *str, long *l)
 {
-	t_ms	*node;
+	int	sign;
+	
+	sign = 1;
+	*l = 0;
+	while (*str == ' ' || *str == '\t')
+		str++;
+	if (*str == '-')
+		sign = -sign;
+	if (*str == '-' || *str == '+')
+		str++;
+	if (!ft_isdigit(*str))
+		return (-1);
+	while (ft_isdigit(*str))
+	{
+		*l = 10 * *l + (*str - '0');
+		str++;
+	}
+	if (*str && (*str != ' ' && *str != '\t'))
+		return (-1);
+	*l *= sign;
+	return (0);
+}
+
+int	ms_exit(t_list *cmd, int *ex)
+{
+	t_ms	*n;
 	long	status[2];
 
-	node = cmd->content; //assign to node the content of cmd
-	*ex = !cmd->next; //assign 0 to ex if there is no next to cmd, or next directin if there is next
+	n = cmd->content; //assign to node the content of cmd
+	*ex = !cmd->next; //assign 1 to ex if there is no next to cmd, or 0 if there is next
 	if (*ex) // if ex is not 0 print exit message
 		ft_putstr_fd("exit\n", 2);
-	if (!node->cmd || !node->cmd[1]) //if the command list in node is empty or its the first command is empty return 0
+	if (!n->cmd || !n->cmd[1]) //if the command list in node is empty or its the first command is empty return 0
 		return (0);
-	status[1] = ft_atoi_ //////////////////////
+	status[1] = ft_atoi_mod(n->cmd[1], &status[0]); // store 0 or -1 depending on te atoi of cmd[1] (the argument for exit)
+	if (status[1] == -1) //if we had a -1 it means we cannot do an atoi to cmd[1] so error message
+	{
+		ft_putstr_fd("minishell: exit: ", 2);
+		ft_putstr_fd(n->cmd[1], 2);
+		ft_putstr_fd(": numeric argument required\n", 2);
+		return (255);
+	}
+	else if (n->cmd[2]) // if we have more than one arguments error
+	{
+		*ex = 0;
+		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+		return (1);
+	}
+	status[0] %= 256 + 256 * (status[0] < 0); // do the module of status[0] (the atoi of cmd received) and 256 plus 256 if status is less than 0
+	return (status[0]);
+	
 
-}*/
+}
 
 /*
  *	This function will check for errors during cd execution

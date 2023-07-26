@@ -98,11 +98,12 @@ void	*check_args(char *out, t_read *p)
 		return ("");
 	//hasta aqui funciona
 	p = parse_args(a, p);
-	/*if (p && p->cmd) //if p exists and p->cmd has been filled properly set n to p->cmd->content
+	 /*if (p && p->cmd) //if p exists and p->cmd has been filled properly set n to p->cmd->content
 		n = p->cmd->content;
 	if (p && p->cmd && n && n->cmd && ft_lstlen(p->cmd) == 1) // if n and p exist and cmd has a length of 1 we save the last command executed in env variable
 		export_last_cmd(p->env, "_", n->cmd[ft_matrixlen(n->cmd) - 1]); //export_last_cmd is in envs_utils.c
 	if (p && p->cmd)
-		ft_lstclear(&p->cmd, free_cmd);*/ //clear p->cmd to avoid leaks, free_cmd is in error.c
+		ft_lstclear(&p->cmd, free_cmd); //clear p->cmd to avoid leaks, free_cmd is in error.c
+		*/
 	return (p);
 }
