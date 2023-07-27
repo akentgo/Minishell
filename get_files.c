@@ -41,7 +41,7 @@ t_ms	*get_of_concat(t_ms *node, char **args, int *i)
 
 	flag[0] = 1;
 	flag[1] = 1;
-	new_line = "minishell: syntax error near unexpected token `newline'"; // we asign our newline so print it in case we have an error
+	new_line = "El Nano🇪🇸 : syntax error near unexpected token `newline'"; // we asign our newline so print it in case we have an error
 	(*i)++;
 	if (args[++(*i)])
 		node->outfile = get_fd(node->outfile, args[*i], flag); //we asign our file descriptor to our node outfile
@@ -70,7 +70,7 @@ t_ms	*get_of_redir(t_ms *node, char **args, int *i)
 
 	flag[0] = 1;
 	flag[1] = 0;
-	new_line = "minishell: syntax error near unexpected token `newline'"; // we asign our newline so print it in case we have an error
+	new_line = "El Nano🇪🇸 : syntax error near unexpected token `newline'"; // we asign our newline so print it in case we have an error
 	(*i)++;
 	if (args[(*i)])
 		node->outfile = get_fd(node->outfile, args[*i], flag); //we asign our file descriptor to our node outfile
@@ -95,7 +95,7 @@ t_ms	*get_inf_redir(t_ms *node, char **args, int *i)
 
 	flag[0] = 0;
 	flag[1] = 0;
-	new_line = "minishell: syntax error near unexpected token `newline'"; // we asign our newline so print it in case we have an error
+	new_line = "El Nano🇪🇸 : syntax error near unexpected token `newline'"; // we asign our newline so print it in case we have an error
 	(*i)++;
 	if (args[(*i)])
 		node->infile = get_fd(node->infile, args[*i], flag); //we asign our file descriptor to our node outfile
@@ -123,8 +123,8 @@ t_ms	*get_inf_heredoc(t_ms *node, char **args, int *i)
 	str[0] = NULL;
 	str[1] = NULL;
 	aux[0] = NULL;
-	aux[1] = "minishell: warning: here-document delimited by end-of-file"; //this will be the message for the here doc once it is open
-	new_line = "minishell: syntax error near unexpected token `newline'"; // we asign our newline so print it in case we have an error
+	aux[1] = "El Nano🇪🇸 : warning: here-document delimited by end-of-file"; //this will be the message for the here doc once it is open
+	new_line = "El Nano🇪🇸 : syntax error near unexpected token `newline'"; // we asign our newline so print it in case we have an error
 	(*i)++;
 	if (args[++(*i)])
 	{

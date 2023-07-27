@@ -1,4 +1,4 @@
-#include "includes/minishell.h" CMD+SHIFT+7 para eliminar los comments estos de la izquierda
+#include "includes/minishell.h"
 
 /*
     This function finds the full path for a command. Example: /bin/cat
