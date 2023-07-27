@@ -45,19 +45,19 @@ static void	*child_redir(t_list *cmd, int fd[2])
 	t_ms	*n;
 	
 	n = cmd->content;
-	if (n->infile != STDIN_FILENO)
+	if (n->infile != INFILE)
 	{
-		if (dup2(n->infile, STDIN_FILENO) == -1)
+		if (dup2(n->infile, INFILE) == -1)
 			return (ms_error(DUPERROR, NULL, 1));
 		close(n->infile);
 	}
-	if (n->outfile != STDOUT_FILENO)
+	if (n->outfile != OUTFILE)
 	{
-		if(dup2(n->outfile, STDOUT_FILENO) == -1)
+		if(dup2(n->outfile, OUTFILE) == -1)
 			return (ms_error(DUPERROR, NULL, 1));
 		close(n->outfile);
 	}
-	else if (cmd->next && dup2(fd[WRITE_FD], STDOUT_FILENO) == -1)
+	else if (cmd->next && dup2(fd[WRITE_FD], OUTFILE) == -1)
 		return (ms_error(DUPERROR, NULL, 1));
 	close(fd[WRITE_FD]);
 	return ("");
