@@ -26,7 +26,7 @@ void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 		g_status = 0;
 		print_env(p->env);
 	}
-	free(envs);
+	//ft_free_matrix(&envs); Aquí hay que echarle un ojo porque hay que liberar de alguna manera pero quizas no con esta función porque libera cosas sin alojar
 }
 
 /*

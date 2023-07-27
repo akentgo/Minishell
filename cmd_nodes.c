@@ -169,7 +169,6 @@ t_list	*ms_fill(char **args, int i)
 
 	cmd[0] = NULL;
 	tmp[1] = cmd_trim(args); //we hold our arguments trimmed in tmp[1] args lo guarda bien
-	int j = -1;
 	while (args[++i]) //for each string
 	{
 		cmd[1] = ft_lstlast(cmd[0]); //we set cmd[1] as the last element of the list (NULL at the beginning)

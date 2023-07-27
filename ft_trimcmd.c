@@ -44,7 +44,7 @@ static char	**ft_fill_array(char *str, char **ret, char *sep, int i[3])
 	q[0] = 0;
 	q[1] = 0;
 	len = ft_strlen(str);
-	while (q[i[0]])
+	while (str[i[0]])
 	{
 		while (ft_strchr(sep, str[i[0]]) && str[i[0]] != '\0')
 			i[0]++;

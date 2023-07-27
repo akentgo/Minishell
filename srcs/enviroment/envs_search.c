@@ -26,6 +26,8 @@ char *search_env(t_env *env, char *var)
 {
 	char	*holder;
 
+	if (var && var[0] == '\0')
+		return (ft_strdup(""));
 	while (env && env->name)
 	{
 		if (ft_strncmp(env->name, var, ft_strlen(env->name)) == 0)
@@ -35,21 +37,23 @@ char *search_env(t_env *env, char *var)
 		}
 		env = env->next;
 	}
-	return (NULL);
+	return (ft_strdup(""));
 }
 
 char *search_env_len(t_env *env, char *var, int n)
 {
 	char	*holder;
 
-	while (env->name)
+	if (var && var[0] == '\0' || n == 0)
+		return (ft_strdup(""));
+	while (env && env->name)
 	{
-		if (ft_strncmp(env->name, var, n) == 0)
+		if (ft_strncmp(env->name, var, n) == 0 && ft_strlen(env->name) == n)
 		{
 			holder = ft_strdup(env->value);
 			return (holder);
 		}
 		env = env->next;
 	}
-	return (NULL);
+	return (ft_strdup(""));
 }

@@ -1,5 +1,20 @@
 #include "../../includes/minishell.h"
 
+int	ft_countchar(char *s, char c)
+{
+	int	ct;
+	if (!s)
+		return (0);
+	ct = 0;
+	while (*s)
+	{
+		if (*s == c)
+			ct++;
+		s++;
+	}
+	return (ct);
+}
+
 int ms_echo(t_list *cmd)
 {
 	char	**argv;
@@ -13,7 +28,7 @@ int ms_echo(t_list *cmd)
 	argv = n->cmd;
 	while (argv && argv[++i[0]])
 	{
-		if (!i[1] && !ft_strncmp(argv[i[0]], "-n", 2) && ft_strlen(argv[i[0]]) == 2)
+		if (!i[1] && !ft_strncmp(argv[i[0]], "-n", 2) && (ft_strlen(argv[i[0]] - 1) == ft_countchar(argv[i[0]], 'n')))
 			i[2] = 0;
 		else
 		{
