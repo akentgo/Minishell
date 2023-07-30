@@ -1,4 +1,4 @@
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 /*
     This function finds the full path for a command. Example: /bin/cat

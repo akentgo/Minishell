@@ -1,32 +1,38 @@
 NAME = minishell
 
-#HEADER = minishell.h
-
 FLAGS = -Wall -Wextra -Werror
 
-SRC_FILES = main.c prompt.c srcs/enviroment/envs.c srcs/enviroment/env_utils2.c srcs/enviroment/envs_utils.c srcs/enviroment/envs_search.c error.c expander.c args.c lexer.c \
-			redir_splitter.c cmd_nodes.c get_files.c heredoc.c ft_trim.c builtins.c srcs/built-ins/cd.c srcs/built-ins/echo.c srcs/built-ins/pwd.c signals.c exec_cmd.c exec.c \
-			utils.c 
+SRC_FILES = srcs/main.c srcs/prompt.c srcs/enviroment/envs.c srcs/enviroment/env_utils2.c srcs/enviroment/envs_utils.c srcs/enviroment/envs_search.c srcs/error.c srcs/expander.c srcs/args.c srcs/lexer.c \
+			srcs/redir_splitter.c srcs/cmd_nodes.c srcs/get_files.c srcs/heredoc.c srcs/ft_trim.c srcs/builtins.c srcs/built-ins/cd.c srcs/built-ins/echo.c srcs/built-ins/pwd.c srcs/signals.c srcs/exec_cmd.c srcs/exec.c \
+			srcs/utils.c
 
-LIBFT = libft/libft.a
+LIBFT = ./libft/libft.a
 
-OBJS = $(SRC_FILES:.c=.o)
+OBJS_DIRS = objs
+OBJS = $(addprefix $(OBJS_DIRS)/, $(SRC_FILES:.c=.o))
 
 CC = gcc
 
 INCLUDE_DIRS = -L /Users/akent-go/.brew/opt/readline
 
-all: $(NAME)
+all: $(OBJS_DIRS) $(NAME)
+
+$(shell mkdir -p $(dir $(OBJS)))
 
 $(NAME): $(OBJS)
 	@ make -C libft/
-	@ $(CC) -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(OBJS) -lreadline $(LIBFT) -o $(NAME)
+	@ $(CC) -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $^ -lreadline $(LIBFT) -o $(NAME)
 
-%.o: %.c
+$(OBJS_DIRS)/%.o: %.c | $(OBJS_DIRS)
 	@ $(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include -c $< -o $@
 
+$(OBJS_DIRS):
+	@ mkdir -p $(OBJS_DIRS)
+	@ mkdir -p $(dir $(OBJS))
+
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJS)
+	rm -rf $(OBJS_DIRS)
 	make -C libft/ clean
 
 fclean: clean
