@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asolano- <asolano-@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:28:18 by asolano-          #+#    #+#             */
-/*   Updated: 2022/04/28 12:58:53 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/07/30 11:39:26 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	a_cont = 0;
 	sol_cont = 0;
-	if (!s1)
-		return (0);
 	sol = (char *)malloc(sizeof (char) * ((ft_strlen(s1) + ft_strlen(s2) + 1)));
 	if (!sol)
 		return (0);
-	while (s1[sol_cont])
+	while (s1 && s1[sol_cont])
 	{
 		sol[sol_cont] = s1[sol_cont];
 		sol_cont++;
 	}
-	while (s2[a_cont])
+	while (s2 && s2[a_cont])
 	{
 		sol[sol_cont] = s2[a_cont];
 		a_cont++;

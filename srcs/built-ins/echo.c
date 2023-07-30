@@ -28,7 +28,7 @@ int ms_echo(t_list *cmd)
 	argv = n->cmd;
 	while (argv && argv[++i[0]])
 	{
-		if (!i[1] && !ft_strncmp(argv[i[0]], "-n", 2) && (ft_strlen(argv[i[0]] - 1) == ft_countchar(argv[i[0]], 'n')))
+		if (!i[1] && !ft_strncmp(argv[i[0]], "-n", 2))
 			i[2] = 0;
 		else
 		{

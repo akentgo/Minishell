@@ -2,10 +2,10 @@
 
 int	g_status = 0;
 
-/*void	ft_leaks(void)
+void	ft_leaks(void)
 {
 	system("leaks -q minishell");
-}*/
+}
 
 static void	ms_getpid(t_read *prompt)
 {
@@ -77,7 +77,7 @@ int	main(int argc, char **argv, char **env)
 	char	*out;
 	t_read	prompt;
 
-	//atexit(ft_leaks);
+	atexit(ft_leaks);
 	prompt = init_prompt(env);
 	
 	while (1)
