@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   envs_search.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/30 17:19:16 by akent-go          #+#    #+#             */
+/*   Updated: 2023/07/30 17:19:17 by akent-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 extern int	g_status;
@@ -22,7 +34,7 @@ int	ft_strchr_i(const char *s, int c)
 	return (-1);
 }
 
-char *search_env(t_env *env, char *var)
+char	*search_env(t_env *env, char *var)
 {
 	char	*holder;
 
@@ -40,7 +52,7 @@ char *search_env(t_env *env, char *var)
 	return (ft_strdup(""));
 }
 
-char *search_env_len(t_env *env, char *var, int n)
+char	*search_env_len(t_env *env, char *var, int n)
 {
 	char	*holder;
 

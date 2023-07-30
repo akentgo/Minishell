@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_trim.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/30 18:01:03 by akent-go          #+#    #+#             */
+/*   Updated: 2023/07/30 18:01:04 by akent-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 /*
@@ -33,27 +45,27 @@ static int	trim_len(const char *s)
 
 char	*ft_trim(const char *s, int qte[2])
 {
-	int		ct;		//this will hold the number of quotes to remove
-	int		i[2];	//these will be 2 counters, one for s string and the other for trim string
-	char	*trim;	//this will be the new string
+	int		ct;
+	int		i[2];
+	char	*trim;
 
-	i[0] = 0;	//set the counter to 0
-	i[1] = -1;	//set the counter to 0
-	ct = trim_len(s);	//we check the number of quotes to remove
-	if (!s || ct == -1) //if there is no string or there is an open quote return NULL
+	i[0] = 0;
+	i[1] = -1;
+	ct = trim_len(s);
+	if (!s || ct == -1)
 		return (NULL);
-	trim = malloc(sizeof(char) * (ft_strlen(s) - ct + 1)); //allocate memory for the string minus the number of quotes to remove
-	if (!trim) //protect the malloc
+	trim = malloc(sizeof(char) * (ft_strlen(s) - ct + 1));
+	if (!trim)
 		return (NULL);
-	//El error es al guardar caracteres en el string aqui abajo, 
-	while (s[i[0]]) //iterate the string
+	while (s[i[0]])
 	{
-		qte[0] = (qte[0] + (!qte[1] && s[i[0]] == '\'')) % 2;	//checking quotes (explained in lexer)
-		qte[1] = (qte[1] + (!qte[0] && s[i[0]] == '\"')) % 2;	//checking quotes
-		if ((s[i[0]] != '\"' || qte[0]) && (s[i[0]] != '\'' || qte[1]) && ++i[1] >= 0)
+		qte[0] = (qte[0] + (!qte[1] && s[i[0]] == '\'')) % 2;
+		qte[1] = (qte[1] + (!qte[0] && s[i[0]] == '\"')) % 2;
+		if ((s[i[0]] != '\"' || qte[0]) && (s[i[0]] != '\'' \
+			|| qte[1]) && ++i[1] >= 0)
 			trim[i[1]] = s[i[0]];
-		i[0]++; //iterates
+		i[0]++;
 	}
-	trim[++i[1]] = '\0'; //close trim string
-	return (trim); //return the string
+	trim[++i[1]] = '\0';
+	return (trim);
 }

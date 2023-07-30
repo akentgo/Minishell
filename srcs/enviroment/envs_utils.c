@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   envs_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/30 17:18:18 by akent-go          #+#    #+#             */
+/*   Updated: 2023/07/30 17:18:43 by akent-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 extern int	g_status;
@@ -8,6 +20,7 @@ extern int	g_status;
 int	env_size(char **env)
 {
 	int	i;
+
 	i = 0;
 	while (env[i])
 		i++;
@@ -46,9 +59,6 @@ int	ms_unset(t_env *env, char *str)
 	return (0);
 }
 
-/*
- *	This function will set the new env variable or replace its old value if it already existed
- */
 void	ms_export(t_env *env, char *str, int i)
 {
 	char	**holder;
@@ -92,10 +102,6 @@ void	print_env(t_env *env)
 		env = env->next;
 	}
 }
-
-/*
- *	
- */
 
 void	print_var(t_env *env, char *str)
 {

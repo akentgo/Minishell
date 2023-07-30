@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/30 18:12:07 by akent-go          #+#    #+#             */
+/*   Updated: 2023/07/30 18:12:07 by akent-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 int	g_status = 0;
@@ -9,22 +21,18 @@ int	g_status = 0;
 
 static void	ms_getpid(t_read *prompt)
 {
-	pid_t	pid; //this variable holds our new process id
+	pid_t	pid;
 
-	pid = fork(); //create a fork and save child process id in pid
-	if (pid < 0) //if pid is -1 means there has been an error
+	pid = fork();
+	if (pid < 0)
 	{
-		ms_error(FORKERROR, NULL, 1); //print fork error message
-		//ft_free_env(prompt->env);
-		exit(1); //exit with error code (1)
+		ms_error(FORKERROR, NULL, 1);
+		exit(1);
 	}
-	if (pid == 0) //if pid is 0 it means we are in child process
-	{
-		//ft_free_env(prompt->env);
-		exit (1); //exit with error code
-	}
-	waitpid(pid, NULL, 0); //start a wait so when the child process ends its resources will be released
-	prompt->pid = pid - 1; //set the prompt pid to pid - 1
+	if (pid == 0)
+		exit (1);
+	waitpid(pid, NULL, 0);
+	prompt->pid = pid - 1;
 }
 
 /*
@@ -55,7 +63,7 @@ static t_read	init_vars(t_read prompt, char *str)
  *	This function initialize everything for the t_read variable, which means 
  *	env variable, g_status and pid
  */
-static	t_read init_prompt(char **env)
+static	t_read	init_prompt(char **env)
 {
 	t_read	prompt;
 	char	*str;
@@ -71,27 +79,20 @@ static	t_read init_prompt(char **env)
 
 int	main(int argc, char **argv, char **env)
 {
-	(void)argc;
-	(void)argv;
 	char	*line;
 	char	*out;
 	t_read	prompt;
 
-	//atexit(ft_leaks);
+	(void)argc;
+	(void)argv;
 	prompt = init_prompt(env);
-	
 	while (1)
 	{
 		signal(SIGINT, sg_handle);
 		signal(SIGQUIT, SIG_IGN);
 		out = readline("El Nano🇪🇸 $ ");
-		/*Funciones que faltan por hacer
-			clear_cmd->cmd_nodes.c		hecha, es clear_mms		ft_free_matrix->cmd_nodes.c Hecha (error.c)
-			dup_matrix->cmd_nodes.c		Hecha (error.c)
-		*/
 		if (!check_args(out, &prompt))
 			break ;
 	}
 	exit(g_status);
 }
-

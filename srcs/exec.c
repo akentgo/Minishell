@@ -1,17 +1,23 @@
-#include "../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/30 17:56:12 by akent-go          #+#    #+#             */
+/*   Updated: 2023/07/30 17:56:13 by akent-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-	Cosas con señales que no están (entiendo que será el ctrl + c o algo así)
-	si el comando no es un builtin y hay comandos los ejecutamos con execve
-	si no, quiere decir que es un builtin así que comprobamos que sea pwd, echo o env y ejectuamos cada uno
-*/
+#include "../includes/minishell.h"
 
 void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 {
-	char **envs;
+	char	**envs;
 
 	envs = turn_into_arr(p->env);
-	signal(SIGINT,SIG_DFL);
+	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	if (!is_builtin(n) && n->cmd)
 		execve(n->path, n->cmd, envs);
@@ -29,21 +35,10 @@ void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 	ft_free_matrix(&envs);
 }
 
-/*
-	Recibimos la lista de comandos y los file descriptors
-	Asignamos el contenido de cmd a n (para hacerlo más corto)
-	Si el infile o el ooufile no es el estandar hacemos un dup2 (duplicamos el file descriptor recibido y le damos el valor estandar)
-	Si algun dup2 devuelve -1 devolvemos el error "dup error"
-	si no cerramos el file descriptor de cada uno (para evitar tener 2 iguales)
-	si todo ha ido bien y hay más comandos hacemos un dup2 con el file descriptor de escritura y le damos el valor estandar
-	Si falla devolvemos "dup error"
-	si sale bien cerramos el file descriptor original y devolvemos un string vacío
-*/
-
 static void	*child_redir(t_list *cmd, int fd[2])
 {
 	t_ms	*n;
-	
+
 	n = cmd->content;
 	if (n->infile != INFILE)
 	{
@@ -53,7 +48,7 @@ static void	*child_redir(t_list *cmd, int fd[2])
 	}
 	if (n->outfile != OUTFILE)
 	{
-		if(dup2(n->outfile, OUTFILE) == -1)
+		if (dup2(n->outfile, OUTFILE) == -1)
 			return (ms_error(DUPERROR, NULL, 1));
 		close(n->outfile);
 	}
@@ -63,14 +58,6 @@ static void	*child_redir(t_list *cmd, int fd[2])
 	return ("");
 }
 
-/*
-	Asignamos a n el contenido de cmd (como siempre para hacerlo más corto)
-	si en el cmd de n hay algo a l le damos la longitud del comando dentro de n
-	llamamos a child_redir dandole la lista de comandos y los fd del pipe
-	cerramos el fd de lectura
-	llamamos a child_builtin
-	limpiamos la lista y nos salimos con el estatus que tengamos en el momento
-*/
 void	*child_process(t_read *p, t_list *cmd, int fd[2])
 {
 	t_ms	*n;
@@ -87,11 +74,6 @@ void	*child_process(t_read *p, t_list *cmd, int fd[2])
 	exit(g_status);
 }
 
-/*
-	creamos una variable pid a la que le asignamos el valor de fork (fork crea un proceso duplicado, para el padre devolverá el pid del hijo, mientras que para el hijo será 0)
-	Si el pid es menor a 0 quiere decir que ha habido un error así que cerramos los file descriptors y devolvemos el error "fallo en el fork"
-	si no, ejecutamos child_process en el proceso hijo
-*/
 void	exec_fork(t_read *p, t_list *cmd, int fd[2])
 {
 	pid_t	pid;
@@ -107,21 +89,11 @@ void	exec_fork(t_read *p, t_list *cmd, int fd[2])
 		child_process(p, cmd, fd);
 }
 
-/*
-	Esta función iguala el contenido de cmd a n (para que sea más corto de escribir) e iguala dir a NULL para evitar errores luego
-	si en el comando dentro de n hay algo intentamos abrirlo como directorio
-	si el infile o el outfile es -1 (es decir, ha habido un error abriendo el file descriptor) devolvemos NULL
-	Si el comando tiene path y es accesible o es un builtin llamamos a exec_fork
-	Si no, comprobamos que no sea un builtin y el path no sea accesible o que sea un directorio, en cualquiera de los dos casos ponemos el g_status a 126
-	Si no, comprobamos que no es un builtin y hay algo dentro del comando, si ocurre esto ponemos g_status a 127
-	Si hemos abierto un directorio lo cerramos
-	devolvemos un string vacío
-*/
 void	*check_to_fork(t_read *p, t_list *cmd, int fd[2])
 {
 	t_ms	*n;
 	DIR		*dir;
-	
+
 	n = cmd->content;
 	dir = NULL;
 	if (n->cmd)

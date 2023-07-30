@@ -1,33 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_utils2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/30 17:26:21 by akent-go          #+#    #+#             */
+/*   Updated: 2023/07/30 17:26:22 by akent-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 extern int	g_status;
 
-void    ft_free_env(t_env *env) //ESTO HAY QUE ARREGLARLO, NO DEBERÍA FUNCIONAR Y CREO QUE NI SE USA
+void	ft_free_env(t_env *env)
 {
-    if (env->next)
-        ft_free_env(env->next);
-    free(env->name);
-    free(env->value);
-    free(env);
+	if (env->next)
+		ft_free_env(env->next);
+	free(env->name);
+	free(env->value);
+	free(env);
 }
 
-char    **ft_split_env(char *str)
+char	**ft_split_env(char *str)
 {
-    int     i;
-    char    **split;
+	int		i;
+	char	**split;
 
-    if (!str)
-        return (NULL);
-    i = 0;
-    while (str[i] && str[i] != '=')
-        i++;
-    if (ft_strlen(str) == i)
-        return (NULL);
-    split = malloc (sizeof (char *) * 3);
-    split[0] = ft_substr(str, 0, i);
-    split[1] = ft_substr(str, i + 1, ft_strlen(str));
-    split[2] = NULL;
-    return (split);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i] && str[i] != '=')
+		i++;
+	if (ft_strlen(str) == i)
+		return (NULL);
+	split = malloc (sizeof (char *) * 3);
+	split[0] = ft_substr(str, 0, i);
+	split[1] = ft_substr(str, i + 1, ft_strlen(str));
+	split[2] = NULL;
+	return (split);
 }
 
 void	print_empty_env(t_env *env)
@@ -70,10 +82,10 @@ void	export_last_cmd(t_env *env, char *s1, char *s2)
 	while (env->next != 0)
 	{
 		if (ft_strcomp(env->name, s1))
-			{
-				ft_strreplace(&(env->value), s2);
-				return ;
-			}
+		{
+			ft_strreplace(&(env->value), s2);
+			return ;
+		}
 		env = env->next;
 	}
 	env->next = new_env();

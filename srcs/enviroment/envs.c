@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   envs.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/30 17:22:27 by akent-go          #+#    #+#             */
+/*   Updated: 2023/07/30 17:22:28 by akent-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 extern int	g_status;
-
-
 
 /*
  * this function creates a new variable with empty values
@@ -48,13 +58,12 @@ char	*set_var(char *name, char *value)
 	char	*new;
 	char	*aux;
 
-	if (!name || !value)	
+	if (!name || !value)
 		return (NULL);
 	aux = ft_strjoin(name, "=");
 	new = ft_strjoin(aux, value);
 	free (aux);
 	return (new);
-
 }
 
 /*
@@ -66,9 +75,6 @@ t_env	*env_set(char **env)
 {
 	t_env	*enviro;
 
-	//enviro = malloc (sizeof(t_env));
-	if (!enviro)
-		return (0);
 	env_fill(&enviro, env);
 	return (enviro);
 }

@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:46:10 by asolano-          #+#    #+#             */
-/*   Updated: 2023/06/29 09:04:18 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/30 17:14:07 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlcpy(char *dest, const char *src, unsigned int size)
 
 	i = 0;
 	length = 0;
-	if(!src)
+	if (!src)
 		return (0);
 	while (src[length])
 		length++;

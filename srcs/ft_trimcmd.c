@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_trimcmd.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/30 18:01:38 by akent-go          #+#    #+#             */
+/*   Updated: 2023/07/30 18:01:39 by akent-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 /*
- * This function will count the number of words after trimming, explained in lexer.c
+ * This function will count the number of words 
+ after trimming, explained in lexer.c
  */
-
-static int n_words(const char *str, char *sep, int ct[2])
+static int	n_words(const char *str, char *sep, int ct[2])
 {
 	int	q[2];
 
