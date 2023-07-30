@@ -1,4 +1,4 @@
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 /*
  * 	This function count the number of words for our redirection function

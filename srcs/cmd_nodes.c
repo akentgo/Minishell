@@ -1,4 +1,4 @@
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 /*
  *	This function will create an element t_ms (type minishell) initializing

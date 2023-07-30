@@ -1,4 +1,4 @@
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 /*
  *	This function will return the number of  quotes that we have to trim

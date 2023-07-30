@@ -1,4 +1,4 @@
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 static void	update_output(char ***splitted, int fd)
 {

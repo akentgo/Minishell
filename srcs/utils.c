@@ -1,4 +1,4 @@
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 char    **turn_into_arr(t_env *envs)
 {

@@ -1,4 +1,4 @@
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 /*
  * This function will count the number of words after trimming, explained in lexer.c

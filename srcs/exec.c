@@ -1,4 +1,4 @@
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
 /*
 	Cosas con señales que no están (entiendo que será el ctrl + c o algo así)
