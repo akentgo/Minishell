@@ -64,6 +64,8 @@ void	ms_export(t_env *env, char *str, int i)
 {
 	char	**holder;
 
+	if (!str)
+		return ;
 	holder = ft_split_env(str);
 	if (str[0] >= '0' && str[0] <= '9')
 		ms_error(12, str, 127);

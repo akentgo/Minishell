@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:33:22 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/25 15:57:37 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/07/30 12:46:28 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,5 +201,6 @@ char    **ft_split_env(char *str);
 
 void	print_empty_env(t_env *env);
 void    sg_handle(int signal);
+void	export_last_cmd(t_env *env, char *s1, char *s2);
 
 #endif
