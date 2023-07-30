@@ -3,26 +3,15 @@
 extern int	g_status;
 
 /*
- * this function compares 2 strings and returns 0 if they're exactly the same or 
- * other number if they're not
+ * this function returns the number of env variables existing
  */
-int	ft_strcomp(char *a, char *b)
+int	env_size(char **env)
 {
 	int	i;
-	int	n;
-
 	i = 0;
-	n = 0;
-	if (!a || !b)
-		return (1);
-	if (ft_strlen(a) != ft_strlen(b))
-		return (1);
-	while (a[i] && b[i] && (a[i] != '\0' && b[i] != '\0') && n == 0)
-	{
-		n = a[i] - b[i];
+	while (env[i])
 		i++;
-	}
-	return (n);
+	return (i);
 }
 
 /*
@@ -113,44 +102,4 @@ void	print_var(t_env *env, char *str)
 	if (!str)
 		return ;
 	printf("%s\n", search_env(env, str));
-}
-
-char	*env_parser(char *str, char *sep)
-{
-	char	*new_str;
-	int		qte[2];
-	int		i;
-
-	qte[0] = 0;
-	qte[1] = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (ft_strchr(sep, str[i]) && str[i] != '\0')
-		{
-			new_str = malloc(sizeof(char) * i + 1);
-			if (!new_str)
-				return (NULL);
-			ft_strlcpy(new_str, str, i);
-			return (new_str);
-		}
-		i++;
-	}
-	return (new_str);
-}
-
-void	export_last_cmd(t_env *env, char *s1, char *s2)
-{
-	while (env->next != 0)
-	{
-		if (ft_strcomp(env->name, s1))
-			{
-				ft_strreplace(&(env->value), s2);
-				return ;
-			}
-		env = env->next;
-	}
-	env->next = new_env();
-	env->name = ft_strdup(s1);
-	env->value = ft_strdup(s2);
 }
