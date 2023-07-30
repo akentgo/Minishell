@@ -1,20 +1,5 @@
 #include "../../includes/minishell.h"
 
-int	ft_countchar(char *s, char c)
-{
-	int	ct;
-	if (!s)
-		return (0);
-	ct = 0;
-	while (*s)
-	{
-		if (*s == c)
-			ct++;
-		s++;
-	}
-	return (ct);
-}
-
 int ms_echo(t_list *cmd)
 {
 	char	**argv;

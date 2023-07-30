@@ -77,6 +77,35 @@ typedef struct	s_ms
 	int		outfile;
 }			t_ms;
 
+//CD.C//
+int ms_cd(t_read *p);
+
+//ECHO.C//
+int ms_echo(t_list *cmd);
+
+//PWD.C//
+int	ms_pwd(void);
+
+//ENVS.C//
+t_env	*new_env(void);
+void	env_fill(t_env **list, char **env);
+char	*set_var(char *name, char *value);
+t_env	*env_set(char **env);
+
+//ENV_UTILS.C//
+int		env_size(char **env);
+int		ms_unset(t_env *env, char *str);
+void	ms_export(t_env *env, char *str, int i);
+void	print_env(t_env *env)
+void	print_var(t_env *env, char *str)
+
+//ENV_UTILS2.C
+void    ft_free_env(t_env *env);
+char    **ft_split_env(char *str);
+void	print_empty_env(t_env *env);
+char	*env_parser(char *str, char *sep)
+void	export_last_cmd(t_env *env, char *s1, char *s2)
+
 //ARGS.C//
 char	**ft_matrix_append(char ***big, char **small, int n);
 static char	**split_all(char **args, t_read *r);
@@ -96,19 +125,21 @@ void	check_redir_caller(char **a[2], int *i);
 void	check_redir_in(char **a[2], int *i);
 void	check_redir_out(char **a[2], int *i);
 t_list	*ms_fill(char **args, int i);
+char	**ft_expand_arr(char **in, char *new);
 
-//CUSTOM_CMD.C//
+//CUSTOM_CMD.C// ESTE NO SE USA, SE PUEDE BORRAR
 static void	update_output(char ***splitted, int fd);
 void	exec_custom(char ***out, char *cmd, char *arg, char **env);
 char	**ft_expand_arr(char **in, char *new);
 
 //ERROR.C//
 void	*ms_error(int err_code, char *param, int err);
+int		ft_atoi_mod(const char *str, long *l);
 int		ms_exit(t_list *cmd, int *ex);
 void	cd_error(char **str[2]);
 void	free_cmd(void *cmd);
-int		ft_matrixlen(char **matrix);
 void	ft_free_matrix(char ***matrix);
+int		ft_matrixlen(char **matrix);
 char	**dup_matrix(char **matrix);
 
 //EXEC.C//
