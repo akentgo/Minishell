@@ -10,7 +10,7 @@ FILES = $(SRC_FILES:src/%=%)
 LIBFT = ./libft/libft.a
 
 OBJS_DIRS = objs
-OBJS = $(addprefix $(OBJS_DIRS)/, $(SRC_FILES:.c=.o))
+OBJS = $(addprefix $(OBJS_DIRS)/, $(SRC_FILES:srcs/%.c=%.o)) # Update the object file paths, also, @D creates the neccesary subdirectories for each file, since we have different files in and out of folders
 
 CC = gcc
 
@@ -18,7 +18,9 @@ INCLUDE_DIRS = -L /Users/akent-go/.brew/opt/readline
 
 all: $(OBJS_DIRS) $(NAME)
 
-$(shell mkdir -p $(dir $(OBJS)))
+$(OBJS_DIRS)/%.o: srcs/%.c
+	@ mkdir -p $(@D) 
+	@ $(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include -c $< -o $@
 
 $(NAME): $(OBJS)
 	@ echo "███╗   ███╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██╗     ██╗"
@@ -32,12 +34,8 @@ $(NAME): $(OBJS)
 	@ echo 					"Compiling Minishell...🤓"
 	@ $(CC) -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $^ -lreadline $(LIBFT) -o $(NAME)
 
-$(OBJS_DIRS)/%.o: %.c | $(OBJS_DIRS)
-	@ $(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include -c $< -o $@
-
 $(OBJS_DIRS):
 	@ mkdir -p $(OBJS_DIRS)
-	@ mkdir -p $(dir $(OBJS))
 
 clean:
 	@ rm -rf $(OBJS)
