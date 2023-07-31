@@ -40,8 +40,11 @@ int	ms_unset(t_env *env, char *str)
 	holder = env;
 	if (!env)
 		return (0);
-	if (ft_strchr(str, '=') != 0)
+	if (!ft_arealnum(str) && ft_strchr(str, '_') == 0)
+	{
 		ms_error(12, str, 127);
+		return (1);
+	}
 	while (env->next != NULL)
 	{
 		if (!ft_strcomp(env->next->name, str))
@@ -51,7 +54,6 @@ int	ms_unset(t_env *env, char *str)
 			handler = env->next;
 			env->next = env->next->next;
 			free (handler);
-			return (0);
 		}
 		else
 			env = env->next;
@@ -59,21 +61,8 @@ int	ms_unset(t_env *env, char *str)
 	return (0);
 }
 
-void	ms_export(t_env *env, char *str, int i)
+void	export_helper(t_env *env, char **holder)
 {
-	char	**holder;
-
-	if (!str)
-		return ;
-	holder = ft_split_env(str);
-	if (str[0] >= '0' && str[0] <= '9')
-		ms_error(12, str, 127);
-	if (!holder || !holder[0] || !holder[1] || holder[2] != NULL)
-		return ;
-	while (holder[i] != NULL)
-		i++;
-	if (i != 2)
-		return ;
 	while (env->next)
 	{
 		if (!ft_strcomp(env->name, holder[0]))
@@ -82,10 +71,30 @@ void	ms_export(t_env *env, char *str, int i)
 			return ;
 		}
 		env = env->next;
-	}
+	} 
 	env->next = new_env();
 	env->name = ft_strdup(holder[0]);
 	env->value = ft_strdup(holder[1]);
+}
+
+int	ms_export(t_env *env, char *str, int i)
+{
+	char	**h;
+
+	if (!str)
+		return (0);
+	h = ft_split_env(str); //esto hay que liberarlo en algún momento
+	if (!h || !h[0] || !h[1] || h[2] != NULL)
+		return (0);
+	if (env_size(h) != 2)
+		return (0);
+	if (ft_isdigit(h[0][0]) || (!ft_arealnum(h[0]) && !ft_strchr(h[0], '_')))
+	{
+		ms_error(12, str, 127);
+		return (1);
+	}
+	export_helper(env, h);
+	return (0);
 }
 
 /*

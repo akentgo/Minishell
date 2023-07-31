@@ -65,3 +65,18 @@ int	ft_strcomp(char *a, char *b)
 	}
 	return (n);
 }
+
+int	ft_arealnum(char *str)
+{
+	int	i;
+
+	i = -1;
+	if (!str)
+		return (0);
+	while (str[++i])
+	{
+		if (ft_isalnum(str[i]))
+			return (1);
+	}
+	return (0);
+}

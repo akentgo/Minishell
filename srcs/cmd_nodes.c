@@ -17,7 +17,7 @@
  *	every parameter for it
  */
 
-static t_ms	*ms_init(void)
+t_ms	*ms_init(void)
 {
 	t_ms	*mini;
 
@@ -34,7 +34,7 @@ static t_ms	*ms_init(void)
 /*
  *	This function cleans the list, args and tmp, avoiding leaks
  */
-static t_list	*clear_ms(t_list *cmd, char **args, char **tmp)
+t_list	*clear_ms(t_list *cmd, char **args, char **tmp)
 {
 	ft_lstclear(&cmd, free_cmd);
 	ft_free_matrix(&tmp);
@@ -46,7 +46,7 @@ static t_list	*clear_ms(t_list *cmd, char **args, char **tmp)
  *	This function will trim every element in our arguments, deleting quotes
  */
 
-static char	**cmd_trim(char	**args)
+char	**cmd_trim(char	**args)
 {
 	char	**tmp;
 	char	*aux;
@@ -70,7 +70,7 @@ static char	**cmd_trim(char	**args)
  * This function will get the params, parsing our outfile, infile and pipes
  */
 
-static t_ms	*get_redir(t_ms *node, char **a[2], int *i)
+t_ms	*get_redir(t_ms *node, char **a[2], int *i)
 {
 	if (a[0][*i])
 	{

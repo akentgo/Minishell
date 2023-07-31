@@ -14,6 +14,20 @@
 
 extern int	g_status;
 
+void	ms_error2(int err_code, char *param, int err)
+{
+	if (err_code == PIPENDERROR)
+		ft_putstr_fd("El Nano🇪🇸 : syntax error near unexpected token `|'\n", 2);
+	else if (err_code == MEM)
+		ft_putstr_fd("El Nano🇪🇸 : not memory left on device\n", 2);
+	else if (err_code == IS_DIR)
+		ft_putstr_fd("El Nano🇪🇸 : Is a directory: ", 2);
+	else if (err_code == NOT_DIR)
+		ft_putstr_fd("El Nano🇪🇸 : Not a directory: ", 2);
+	else if (err_code == 12)
+		ft_putstr_fd("El Nano🇪🇸 : Not a valid identifier: ", 2);
+}
+
 /*
  *	This function prints the error message
  */
@@ -34,16 +48,8 @@ void	*ms_error(int err_code, char *param, int err)
 		ft_putstr_fd("El Nano🇪🇸 : fork failed\n", 2);
 	else if (err_code == PIPERROR)
 		ft_putstr_fd("El Nano🇪🇸 : error creating pipe\n", 2);
-	else if (err_code == PIPENDERROR)
-		ft_putstr_fd("El Nano🇪🇸 : syntax error near unexpected token `|'\n", 2);
-	else if (err_code == MEM)
-		ft_putstr_fd("El Nano🇪🇸 : not memory left on device\n", 2);
-	else if (err_code == IS_DIR)
-		ft_putstr_fd("El Nano🇪🇸 : Is a directory: ", 2);
-	else if (err_code == NOT_DIR)
-		ft_putstr_fd("El Nano🇪🇸 : Not a directory: ", 2);
-	else if (err_code == 12)
-		ft_putstr_fd("El Nano🇪🇸 : Not a valid identifier: ", 2);
+	else
+		ms_error2(err_code, param, err);
 	ft_putendl_fd(param, 2);
 	return (0);
 }

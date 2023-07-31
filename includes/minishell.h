@@ -100,7 +100,7 @@ char			*search_env_len(t_env *env, char *var, int n);
 //ENV_UTILS.C//
 int				env_size(char **env);
 int				ms_unset(t_env *env, char *str);
-void			ms_export(t_env *env, char *str, int i);
+int				ms_export(t_env *env, char *str, int i);
 void			print_env(t_env *env);
 void			print_var(t_env *env, char *str);
 
@@ -121,10 +121,10 @@ int				builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
 int				is_builtin(t_ms *m);
 
 //CMD_NODES.C//
-static t_ms		*ms_init(void);
-static t_list	*clear_ms(t_list *cmd, char **args, char **tmp);
-static char		**cmd_trim(char	**args);
-static t_ms		*get_redir(t_ms *node, char **a[2], int *i);
+t_ms			*ms_init(void);
+t_list			*clear_ms(t_list *cmd, char **args, char **tmp);
+char			**cmd_trim(char	**args);
+t_ms			*get_redir(t_ms *node, char **a[2], int *i);
 void			check_redir_caller(char **a[2], int *i);
 void			check_redir_in(char **a[2], int *i);
 void			check_redir_out(char **a[2], int *i);
@@ -159,7 +159,6 @@ void			exec_fork(t_read *p, t_list *cmd, int fd[2]);
 void			*check_to_fork(t_read *p, t_list *cmd, int fd[2]);
 
 //EXPANDER.C//
-void			ft_strreplace(char **s1, char *s2);
 int				ft_strchr_r(const char *str, char *check);
 int				ft_strchr_r_i(const char *str, char *check);
 char			*expand_path(char *str, int i, int qte[2], char *value);
@@ -207,7 +206,9 @@ char			**redir_split(char *str, char *sep);
 void			sg_handle(int sig);
 
 //UTILS.C//
+int				ft_arealnum(char *str);
 char			**turn_into_arr(t_env *envs);
+void			ft_strreplace(char **s1, char *s2);
 int				ft_strcomp(char *a, char *b);
 
 #endif
