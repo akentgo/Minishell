@@ -19,16 +19,16 @@
 
 t_ms	*ms_init(void)
 {
-	t_ms	*mini;
+	t_ms	*ms;
 
-	mini = malloc(sizeof(t_ms));
-	if (!mini)
+	ms = malloc(sizeof(t_ms));
+	if (!ms)
 		return (NULL);
-	mini->cmd = NULL;
-	mini->path = NULL;
-	mini->infile = INFILE;
-	mini->outfile = OUTFILE;
-	return (mini);
+	ms->cmd = NULL;
+	ms->path = NULL;
+	ms->infile = INFILE;
+	ms->outfile = OUTFILE;
+	return (ms);
 }
 
 /*

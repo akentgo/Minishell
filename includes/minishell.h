@@ -88,9 +88,14 @@ int				ms_pwd(void);
 //ENV_UTILS2.C
 void			ft_free_env(t_env *env);
 char			**ft_split_env(char *str);
-void			print_empty_env(t_env *env);
+int				print_empty_env(t_env *env);
 char			*env_parser(char *str, char *sep);
 void			export_last_cmd(t_env *env, char *s1, char *s2);
+
+//ENV_UTILS3.C
+int				env_size(char **env);
+int				ms_export1(t_env *env, char *str);
+void			print_var(t_env *env, char *str);
 
 //ENVS_SEARCH//
 int				ft_strchr_i(const char *s, int c);
@@ -98,11 +103,11 @@ char			*search_env(t_env *env, char *var);
 char			*search_env_len(t_env *env, char *var, int n);
 
 //ENV_UTILS.C//
-int				env_size(char **env);
-int				ms_unset(t_env *env, char *str);
-int				ms_export(t_env *env, char *str, int i);
+void			unset_helper(t_env *env, char *str);
+int				ms_unset(t_env *env, char **str, int i);
+void			export_helper(t_env *env, char **str);
+int				ms_export(t_env *env, char **str, int i);
 void			print_env(t_env *env);
-void			print_var(t_env *env, char *str);
 
 //ENVS.C//
 t_env			*new_env(void);

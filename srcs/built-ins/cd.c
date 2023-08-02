@@ -29,13 +29,13 @@ int	ms_cd(t_read *p)
 	free(aux);
 	cd_error(str);
 	if (!g_status)
-		ms_export(p->env, set_var("OLDPWD", str[1][1]), 0);
+		ms_export1(p->env, set_var("OLDPWD", str[1][1]));
 	aux = getcwd(NULL, 0);
 	if (!aux)
 		aux = ft_strdup("");
 	str[1] = ft_expand_arr(str[1], aux);
 	free (aux);
-	ms_export(p->env, set_var("PWD", str[1][2]), 0);
+	ms_export1(p->env, set_var("PWD", str[1][2]));
 	ft_free_matrix(&str[1]);
 	return (g_status);
 }

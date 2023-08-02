@@ -42,15 +42,16 @@ char	**ft_split_env(char *str)
 	return (split);
 }
 
-void	print_empty_env(t_env *env)
+int	print_empty_env(t_env *env)
 {
 	if (!env)
-		return ;
+		return (0);
 	while (env->next)
 	{
-		printf("declare -x %s=%s\n", env->name, env->value);
+		printf("declare -x %s=\"%s\"\n", env->name, env->value);
 		env = env->next;
 	}
+	return (0);
 }
 
 char	*env_parser(char *str, char *sep)

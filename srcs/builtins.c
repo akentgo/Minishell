@@ -17,13 +17,10 @@ extern int	g_status;
 int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 {
 	char	**s;
-	int		i;
 
 	while (cmd)
 	{
-		i = 0;
 		s = ((t_ms *)cmd->content)->cmd;
-		n = 0;
 		if (s)
 			n = ft_strlen(*s);
 		if (s && !ft_strncmp(*s, "exit", n) && n == 4)
@@ -31,18 +28,9 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 		else if (!cmd->next && s && !ft_strncmp(*s, "cd", n) && n == 2)
 			g_status = ms_cd(prompt);
 		else if (!cmd->next && s && !ft_strncmp(*s, "export", n) && n == 6)
-		{
-			if (!s[i + 1])
-				print_empty_env(prompt->env);
-			i--;
-			while (s[++i])
-				ms_export(prompt->env, s[i], 0);
-		}
+			g_status = ms_export(prompt->env, s, 0);
 		else if (!cmd->next && s && !ft_strncmp(*s, "unset", n) && n == 5)
-		{
-			while (s[++i])
-				ms_unset(prompt->env, s[i]);
-		}
+			ms_unset(prompt->env, s, 0);
 		else if (!cmd->next && s && !ft_strncmp(*s, "env", n) && n == 3)
 			print_env(prompt->env);
 		else
@@ -51,9 +39,6 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 			signal(SIGQUIT, SIG_IGN);
 			exec_cmd(prompt, cmd);
 		}
-		if ((!ft_strncmp(*s, "export", n) && n == 6) || \
-			(!ft_strncmp(*s, "unset", n) && n == 5))
-			g_status = 0;
 		cmd = cmd->next;
 	}
 	return (g_status);

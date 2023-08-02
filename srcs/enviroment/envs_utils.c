@@ -14,40 +14,13 @@
 
 extern int	g_status;
 
-/*
- * this function returns the number of env variables existing
- */
-int	env_size(char **env)
+void	unset_helper(t_env *env, char *s)
 {
-	int	i;
-
-	i = 0;
-	while (env[i])
-		i++;
-	return (i);
-}
-
-/*
- * this function is used to remove an element from the list, it will do
- * the work for unset command (that's why it's unset_env), it shouldn't have
- * any leaks but I haven't tested it
- */
-int	ms_unset(t_env *env, char *str)
-{
-	t_env	*holder;
 	t_env	*handler;
 
-	holder = env;
-	if (!env)
-		return (0);
-	if (!ft_arealnum(str) && ft_strchr(str, '_') == 0)
-	{
-		ms_error(12, str, 127);
-		return (1);
-	}
 	while (env->next != NULL)
 	{
-		if (!ft_strcomp(env->next->name, str))
+		if (!ft_strcomp(env->next->name, s))
 		{
 			free(env->next->name);
 			free(env->next->value);
@@ -56,7 +29,31 @@ int	ms_unset(t_env *env, char *str)
 			free (handler);
 		}
 		else
-			env = env->next;
+		env = env->next;
+	}
+}
+
+/*
+ * this function is used to remove an element from the list, it will do
+ * the work for unset command (that's why it's unset_env), it shouldn't have
+ * any leaks but I haven't tested it
+ */
+int	ms_unset(t_env *env, char **s, int i)
+{
+	t_env	*holder;
+	t_env	*handler;
+
+	holder = env;
+	if (!env)
+		return (0);
+	while (s && s[++i])
+	{
+		if (!ft_arealnum(s[i]) && ft_strchr(s[i], '_') == 0)
+		{
+			ms_error(12, s[i], 127);
+			return (1);
+		}
+		unset_helper(env, s[i]);
 	}
 	return (0);
 }
@@ -71,29 +68,34 @@ void	export_helper(t_env *env, char **holder)
 			return ;
 		}
 		env = env->next;
-	} 
+	}
 	env->next = new_env();
 	env->name = ft_strdup(holder[0]);
 	env->value = ft_strdup(holder[1]);
 }
 
-int	ms_export(t_env *env, char *str, int i)
+int	ms_export(t_env *env, char **str, int i)
 {
 	char	**h;
 
-	if (!str)
-		return (0);
-	h = ft_split_env(str); //esto hay que liberarlo en algún momento
-	if (!h || !h[0] || !h[1] || h[2] != NULL)
-		return (0);
-	if (env_size(h) != 2)
-		return (0);
-	if (ft_isdigit(h[0][0]) || (!ft_arealnum(h[0]) && !ft_strchr(h[0], '_')))
+	if (!str[i + 1])
+		return (print_empty_env(env));
+	while (str[++i])
 	{
-		ms_error(12, str, 127);
-		return (1);
+		h = ft_split_env(str[i]); //esto hay que liberarlo en algún momento
+		if (!h || !h[0] || !h[1] || h[2] != NULL)
+			return (0);
+		if (env_size(h) != 2)
+			return (0);
+		if (ft_isdigit(h[0][0]) || (!ft_arealnum(h[0]) && \
+		!ft_strchr(h[0], '_')))
+		{
+			ms_error(12, str[i], 127);
+			return (1);
+		}
+		export_helper(env, h);
+		//ft_free_matrix(&h);
 	}
-	export_helper(env, h);
 	return (0);
 }
 
@@ -110,11 +112,4 @@ void	print_env(t_env *env)
 		printf("%s=%s\n", env->name, env->value);
 		env = env->next;
 	}
-}
-
-void	print_var(t_env *env, char *str)
-{
-	if (!str)
-		return ;
-	printf("%s\n", search_env(env, str));
 }
