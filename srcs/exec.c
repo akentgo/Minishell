@@ -32,6 +32,7 @@ void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 		g_status = 0;
 		print_env(p->env);
 	}
+	if (envs)
 	ft_free_matrix(&envs);
 }
 
