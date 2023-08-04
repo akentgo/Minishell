@@ -26,7 +26,7 @@ char	**turn_into_arr(t_env *envs)
 		size++;
 		envs = envs->next;
 	}
-	res = malloc(sizeof(char *) * size);
+	res = (char **)malloc(sizeof(char *) * (size + 1));
 	while (envs->next)
 	{
 		temp = ft_strjoin(envs->name, "=");
@@ -35,6 +35,7 @@ char	**turn_into_arr(t_env *envs)
 		word_ct++;
 		envs = envs->next;
 	}
+	res[word_ct] = 0;
 	return (res);
 }
 

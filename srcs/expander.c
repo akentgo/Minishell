@@ -35,19 +35,16 @@ int	ft_strchr_r(const char *str, char *check)
 
 int	ft_strchr_r_i(const char *str, char *check)
 {
-	int	i[2];
+	int	i;
 
-	i[0] = -1;
+	i = 0;
 	if (!str)
 		return (-1);
-	while (str[++i[0]])
+	while (str[i])
 	{
-		i[1] = -1;
-		while (check[++i[1]])
-		{
-			if (str[i[0]] == check[i[1]])
-				return (i[0]);
-		}
+		if (ft_strchr(check, str[i]))
+		return (i);
+		i++;
 	}
 	return (-1);
 }
@@ -93,9 +90,9 @@ static char	*get_substr(char *str, int i, t_read *rd)
 		pos = ft_strlen(str) - 1;
 	ret = ft_substr(str, 0, i - 1);
 	var = search_env_len(rd->env, &str[i], ft_strchr_r_i(&str[i], "\"\'$|>< "));
-	if (!var && str[i] == '$')
+	if (!var[0] && str[i] == '$')
 		var = ft_itoa(rd->pid);
-	else if (!var && str[i] == '?')
+	else if (!var[0] && str[i] == '?')
 		var = ft_itoa(g_status);
 	holder = ft_strjoin(ret, var);
 	free (ret);
@@ -115,8 +112,8 @@ char	*expand_var(char *str, int qte[2], int i, t_read *rd)
 		qte[0] = (qte[0] + (!qte[1] && str[i] == '\'')) % 2;
 		qte[1] = (qte[1] + (!qte[0] && str[i] == '\"')) % 2;
 		if (!qte[0] && str[i] == '$' && str[i + 1] && \
-		((ft_strchr_r_i(&str[i + 1], " :;/~%^{}") && !qte[1]) || \
-			(ft_strchr_r_i(&str[i + 1], "\":;/~%^{}") && qte[1])))
+		((ft_strchr_r(&str[i + 1], " :;/~%^{}") && !qte[1]) || \
+			(ft_strchr_r(&str[i + 1], "\":;/~%^{}") && qte[1])))
 			return (expand_var(get_substr(str, ++i, rd), qte, -1, rd));
 	}
 	return (str);

@@ -60,7 +60,8 @@ static DIR	*cmd_check(t_read *p, t_list *cmd, char ***str, char *path)
 	{
 		path = search_env(p->env, "PATH");
 		*str = ft_split(path, ':');
-		free (path);
+		if (path)
+			free (path);
 		n->path = find_command(*str, *n->cmd, n->path);
 		if (!n->path || !n->cmd[0] || !n->cmd[0][0])
 			ms_error(NCMD, *n->cmd, 127);

@@ -19,6 +19,7 @@ void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 	envs = turn_into_arr(p->env);
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	//printf ("cmd-> %s\npath-> %s\nis builtin-> %i\n", n->cmd[0],n->path, is_builtin(n));
 	if (!is_builtin(n) && n->cmd)
 		execve(n->path, n->cmd, envs);
 	else if (n->cmd && !ft_strncmp(*n->cmd, "pwd", l) && l == 3)
@@ -32,8 +33,8 @@ void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 		g_status = 0;
 		print_env(p->env);
 	}
-	if (envs)
-	ft_free_matrix(&envs);
+	if (envs && is_builtin(n))
+		ft_free_matrix(&envs);
 }
 
 static void	*child_redir(t_list *cmd, int fd[2])
