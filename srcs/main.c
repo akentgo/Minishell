@@ -14,10 +14,10 @@
 
 int	g_status = 0;
 
-/*void	ft_leaks(void)
+void	ft_leaks(void)
 {
 	system("leaks -q minishell");
-}*/
+}
 
 static void	ms_getpid(t_read *prompt)
 {
@@ -27,10 +27,14 @@ static void	ms_getpid(t_read *prompt)
 	if (pid < 0)
 	{
 		ms_error(FORKERROR, NULL, 1);
+		ft_free_env(prompt->env);
 		exit(1);
 	}
 	if (pid == 0)
+	{
+		ft_free_env(prompt->env);
 		exit (1);
+	}
 	waitpid(pid, NULL, 0);
 	prompt->pid = pid - 1;
 }
@@ -42,9 +46,10 @@ static void	ms_getpid(t_read *prompt)
 static t_read	init_vars(t_read prompt, char *str)
 {
 	char	*n;
+	char	*s;
 
 	str = getcwd(NULL, 0);
-	str = ft_strjoin ("PWD=", str);
+	str = ft_strjoin("PWD=", str);
 	ms_export(prompt.env, &str, 0);
 	free (str);
 	str = search_env(prompt.env, "SHLVL");
@@ -53,9 +58,10 @@ static t_read	init_vars(t_read prompt, char *str)
 	else
 		n = ft_itoa(ft_atoi(str) + 1);
 	free (str);
-	n = ft_strjoin("SHLVL=", n);
+	s = ft_strjoin("SHLVL=", n);
 	ms_export(prompt.env, &n, 0);
 	free (n);
+	free (s);
 	return (prompt);
 }
 
@@ -83,6 +89,7 @@ int	main(int argc, char **argv, char **env)
 	char	*out;
 	t_read	prompt;
 
+	atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	prompt = init_prompt(env);
@@ -94,5 +101,6 @@ int	main(int argc, char **argv, char **env)
 		if (!check_args(out, &prompt))
 			break ;
 	}
+	ft_free_env(prompt.env);
 	exit(g_status);
 }

@@ -82,7 +82,7 @@ int	ms_export(t_env *env, char **str, int i)
 		return (print_empty_env(env));
 	while (str[++i])
 	{
-		h = ft_split_env(str[i]); //esto hay que liberarlo en algún momento
+		h = ft_split_env(str[i]);
 		if (!h || !h[0] || !h[1] || h[2] != NULL)
 			return (0);
 		if (env_size(h) != 2)
@@ -94,7 +94,7 @@ int	ms_export(t_env *env, char **str, int i)
 			return (1);
 		}
 		export_helper(env, h);
-		//ft_free_matrix(&h);
+		ft_free_matrix(&h);
 	}
 	return (0);
 }
