@@ -14,7 +14,14 @@
 
 extern int	g_status;
 
-int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
+void	builtin_exec(t_read *p, t_list *cmd)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	exec_cmd(p, cmd);
+}
+
+int	builtin(t_read *p, t_list *cmd, int *is_exit, int n)
 {
 	char	**s;
 
@@ -26,19 +33,15 @@ int	builtin(t_read *prompt, t_list *cmd, int *is_exit, int n)
 		if (s && !ft_strncmp(*s, "exit", n) && n == 4)
 			g_status = ms_exit(cmd, is_exit);
 		else if (!cmd->next && s && !ft_strncmp(*s, "cd", n) && n == 2)
-			g_status = ms_cd(prompt);
+			g_status = ms_cd(p);
 		else if (!cmd->next && s && !ft_strncmp(*s, "export", n) && n == 6)
-			g_status = ms_export(prompt->env, s, 0);
+			g_status = ms_export(p->env, s, 0);
 		else if (!cmd->next && s && !ft_strncmp(*s, "unset", n) && n == 5)
-			ms_unset(prompt->env, s, 0);
+			ms_unset(p->env, s, 0);
 		else if (!cmd->next && s && !ft_strncmp(*s, "env", n) && n == 3)
-			print_env(prompt->env);
+			print_env(p->env);
 		else
-		{
-			signal(SIGINT, SIG_IGN);
-			signal(SIGQUIT, SIG_IGN);
-			exec_cmd(prompt, cmd);
-		}
+			builtin_exec(p, cmd);
 		cmd = cmd->next;
 	}
 	return (g_status);

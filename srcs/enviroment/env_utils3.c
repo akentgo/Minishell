@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_utils3.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asolano- <asolano-@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/09 10:17:47 by asolano-          #+#    #+#             */
+/*   Updated: 2023/08/09 10:17:55 by asolano-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 /*
@@ -31,8 +43,9 @@ int	ms_export1(t_env *env, char *str)
 			return (1);
 		}
 		export_helper(env, h);
-        ft_free_matrix(&h);
+		ft_free_matrix(&h);
 	}
+	free (str);
 	return (0);
 }
 

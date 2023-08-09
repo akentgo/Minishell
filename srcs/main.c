@@ -79,7 +79,7 @@ static	t_read	init_prompt(char **env)
 	prompt.cmd = NULL;
 	prompt.env = env_set(env);
 	g_status = 0;
-	//ms_getpid(&prompt);
+	ms_getpid(&prompt);
 	prompt = init_vars(prompt, str);
 	return (prompt);
 }

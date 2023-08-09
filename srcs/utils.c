@@ -82,3 +82,28 @@ int	ft_arealnum(char *str)
 	}
 	return (0);
 }
+
+int	ft_atoi_mod(const char *str, long *l)
+{
+	int	sign;
+
+	sign = 1;
+	*l = 0;
+	while (*str == ' ' || *str == '\t')
+		str++;
+	if (*str == '-')
+		sign = -sign;
+	if (*str == '-' || *str == '+')
+		str++;
+	if (!ft_isdigit(*str))
+		return (-1);
+	while (ft_isdigit(*str))
+	{
+		*l = 10 * *l + (*str - '0');
+		str++;
+	}
+	if (*str && (*str != ' ' && *str != '\t'))
+		return (-1);
+	*l *= sign;
+	return (0);
+}
