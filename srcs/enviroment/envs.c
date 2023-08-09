@@ -49,6 +49,7 @@ void	env_fill(t_env **list, char **env)
 		tmp->name = ft_strdup(holder[0]);
 		tmp->value = ft_strdup(holder[1]);
 		tmp->next = new_env();
+		ft_free_matrix(&holder);
 		tmp = tmp->next;
 	}
 }

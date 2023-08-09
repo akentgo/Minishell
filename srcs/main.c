@@ -48,9 +48,10 @@ static t_read	init_vars(t_read prompt, char *str)
 	char	*n;
 	char	*s;
 
-	str = getcwd(NULL, 0);
-	str = ft_strjoin("PWD=", str);
-	ms_export(prompt.env, &str, 0);
+	s = getcwd(NULL, 0);
+	str = ft_strjoin("PWD=", s);
+	free (s);
+	ms_export(prompt.env, &str, -1);
 	free (str);
 	str = search_env(prompt.env, "SHLVL");
 	if (!str || ft_atoi(str) <= 0)
@@ -59,7 +60,7 @@ static t_read	init_vars(t_read prompt, char *str)
 		n = ft_itoa(ft_atoi(str) + 1);
 	free (str);
 	s = ft_strjoin("SHLVL=", n);
-	ms_export(prompt.env, &n, 0);
+	ms_export(prompt.env, &n, -1);
 	free (n);
 	free (s);
 	return (prompt);
@@ -78,7 +79,7 @@ static	t_read	init_prompt(char **env)
 	prompt.cmd = NULL;
 	prompt.env = env_set(env);
 	g_status = 0;
-	ms_getpid(&prompt);
+	//ms_getpid(&prompt);
 	prompt = init_vars(prompt, str);
 	return (prompt);
 }
