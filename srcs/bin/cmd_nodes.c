@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:41:21 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 17:41:22 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:03:37 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 /*
  *	This function will create an element t_ms (type minishell) initializing

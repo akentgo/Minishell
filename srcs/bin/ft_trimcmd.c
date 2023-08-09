@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:01:38 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 18:01:39 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:14:16 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 /*
  * This function will count the number of words 
@@ -95,7 +95,7 @@ char	**ft_trimcmd(char const *str, char *sep)
 	ret = malloc ((wd_ct + 1) * sizeof (char *));
 	if (!ret)
 		return (NULL);
-	ret = ft_fill_array(str, ret, sep, i);
+	ret = ft_fill_array((char *)str, ret, sep, i);
 	ret[wd_ct] = NULL;
 	return (ret);
 }

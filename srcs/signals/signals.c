@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 17:15:10 by akent-go          #+#    #+#             */
-/*   Updated: 2023/08/09 16:56:42 by akent-go         ###   ########.fr       */
+/*   Created: 2023/07/30 18:15:13 by akent-go          #+#    #+#             */
+/*   Updated: 2023/08/09 17:04:57 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	ms_pwd(void)
+void	sg_handle(int sig)
 {
-	char	cwd[PATH_MAX];
-
-	if (getcwd(cwd, PATH_MAX))
-	{
-		ft_putendl_fd(cwd, 1);
-		return (SUCCESS);
-	}
-	else
-		return (FAILURE);
+	rl_on_new_line();
+	rl_redisplay();
+	rl_replace_line("", 0);
+	printf("\033[K\n");
+	rl_on_new_line();
+	rl_redisplay();
 }

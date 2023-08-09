@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:56:12 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 17:56:13 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:03:55 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 {

@@ -2,15 +2,24 @@ NAME = minishell
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC_FILES = srcs/main.c srcs/envs.c srcs/env_utils2.c srcs/env_utils3.c srcs/envs_utils.c srcs/envs_search.c srcs/error.c srcs/expander.c srcs/args.c srcs/lexer.c \
-			srcs/redir_splitter.c srcs/cmd_nodes.c srcs/get_files.c srcs/heredoc.c srcs/ft_trim.c srcs/builtins.c srcs/cd.c srcs/echo.c srcs/pwd.c srcs/signals.c srcs/exec_cmd.c srcs/exec.c \
-			srcs/utils.c srcs/cmd_nodes_utils.c srcs/error_utils.c
-FILES = $(SRC_FILES:srcs/%=%)
+SRC = $(BIN) $(BUILTINS) $(ENVIRONMENT) srcs/signals/signals.c
+
+BIN = $(addprefix srcs/bin/, $(BIN_FILES))
+BIN_FILES = args.c builtins.c cmd_nodes_utils.c cmd_nodes.c error_utils.c error.c exec_cmd.c exec.c expander.c ft_trim.c ft_trimcmd.c get_files.c heredoc.c \
+			lexer.c main.c redir_splitter.c utils.c
+
+BUILTINS = $(addprefix srcs/builtins/, $(BUILTIN_FILES))
+BUILTIN_FILES = cd.c echo.c pwd.c
+
+ENVIRONMENT = $(addprefix srcs/environment/, $(ENVIRONMENT_FILES))
+ENVIRONMENT_FILES = env_utils2.c env_utils3.c envs_search.c envs_utils.c envs.c
+
+FILES = $(SRC:srcs/%=%)
 
 LIBFT = ./libft/libft.a
 
 OBJS_DIRS = objs
-OBJS = $(addprefix $(OBJS_DIRS)/, $(SRC_FILES:srcs/%.c=%.o)) # Update the object file paths, also, @D creates the neccesary subdirectories for each file, since we have different files in and out of folders
+OBJS = $(addprefix $(OBJS_DIRS)/, $(SRC:srcs/%.c=%.o)) # Update the object file paths, also, @D creates the neccesary subdirectories for each file, since we have different files in and out of folders
 
 CC = gcc
 

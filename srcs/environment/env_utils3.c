@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:17:47 by asolano-          #+#    #+#             */
-/*   Updated: 2023/08/09 16:56:17 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:04:45 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 /*
  * this function returns the number of env variables existing

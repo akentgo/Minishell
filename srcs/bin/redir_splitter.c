@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:14:28 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 18:14:42 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:04:18 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 /*
  * 	This function count the number of words for our redirection function

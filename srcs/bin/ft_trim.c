@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:01:03 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 18:01:04 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:04:01 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 /*
  *	This function will return the number of  quotes that we have to trim

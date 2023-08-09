@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:18:05 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 18:18:06 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:03:40 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 static void	update_output(char ***splitted, int fd)
 {

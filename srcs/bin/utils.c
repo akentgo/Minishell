@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 18:16:20 by akent-go          #+#    #+#             */
-/*   Updated: 2023/08/09 16:56:45 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:04:21 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 char	**turn_into_arr(t_env *envs)
 {

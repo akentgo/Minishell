@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:54:43 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 17:54:44 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:03:50 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 static char	*find_command(char **env_path, char *cmd, char *path)
 {
