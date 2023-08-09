@@ -14,11 +14,6 @@
 
 int	g_status = 0;
 
-void	ft_leaks(void)
-{
-	system("leaks -q minishell");
-}
-
 static void	ms_getpid(t_read *prompt)
 {
 	pid_t	pid;
@@ -90,7 +85,6 @@ int	main(int argc, char **argv, char **env)
 	char	*out;
 	t_read	prompt;
 
-	atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	prompt = init_prompt(env);
