@@ -2,10 +2,10 @@ NAME = minishell
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC_FILES = srcs/main.c srcs/enviroment/envs.c srcs/enviroment/env_utils2.c srcs/enviroment/env_utils3.c srcs/enviroment/envs_utils.c srcs/enviroment/envs_search.c srcs/error.c srcs/expander.c srcs/args.c srcs/lexer.c \
-			srcs/redir_splitter.c srcs/cmd_nodes.c srcs/get_files.c srcs/heredoc.c srcs/ft_trim.c srcs/builtins.c srcs/built-ins/cd.c srcs/built-ins/echo.c srcs/built-ins/pwd.c srcs/signals.c srcs/exec_cmd.c srcs/exec.c \
+SRC_FILES = srcs/main.c srcs/envs.c srcs/env_utils2.c srcs/env_utils3.c srcs/envs_utils.c srcs/envs_search.c srcs/error.c srcs/expander.c srcs/args.c srcs/lexer.c \
+			srcs/redir_splitter.c srcs/cmd_nodes.c srcs/get_files.c srcs/heredoc.c srcs/ft_trim.c srcs/builtins.c srcs/cd.c srcs/echo.c srcs/pwd.c srcs/signals.c srcs/exec_cmd.c srcs/exec.c \
 			srcs/utils.c srcs/cmd_nodes_utils.c srcs/error_utils.c
-FILES = $(SRC_FILES:src/%=%)
+FILES = $(SRC_FILES:srcs/%=%)
 
 LIBFT = ./libft/libft.a
 

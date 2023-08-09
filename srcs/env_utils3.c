@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asolano- <asolano-@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 10:17:47 by asolano-          #+#    #+#             */
-/*   Updated: 2023/08/09 10:17:55 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:56:17 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
 /*
  * this function returns the number of env variables existing

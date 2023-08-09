@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:26:21 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 17:26:22 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:56:15 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
 extern int	g_status;
 

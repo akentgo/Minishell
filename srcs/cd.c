@@ -6,11 +6,11 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:17:24 by akent-go          #+#    #+#             */
-/*   Updated: 2023/07/30 17:17:26 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:56:07 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
 int	ms_cd(t_read *p)
 {
