@@ -107,7 +107,7 @@ void			unset_helper(t_env *env, char *str);
 int				ms_unset(t_env *env, char **str, int i);
 void			export_helper(t_env *env, char **str);
 int				ms_export(t_env *env, char **str, int i);
-void			print_env(t_env *env);
+void			print_env(t_env *env, char *cmd);
 
 //ENVS.C//
 t_env			*new_env(void);

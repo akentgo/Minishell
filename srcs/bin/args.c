@@ -109,7 +109,7 @@ void	*check_args(char *out, t_read *p)
 	if (p && p->cmd)
 		n = p->cmd->content;
 	if (p && p->cmd && n && n->cmd && ft_lstsize(p->cmd) == 1)
-		export_last_cmd(p->env, "_", n->cmd[ft_matrixlen(n->cmd) - 1]);
+		ms_export1(p->env, set_var("_", n->cmd[ft_matrixlen(n->cmd) - 1]));
 	if (p && p->cmd)
 		ft_lstclear(&p->cmd, free_cmd);
 	return (p);

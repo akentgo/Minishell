@@ -30,7 +30,7 @@ void	child_builtin(t_read *p, t_ms *n, int l, t_list *cmd)
 			l == 3)
 	{
 		g_status = 0;
-		print_env(p->env);
+		print_env(p->env, n->cmd[ft_matrixlen(n->cmd) - 1]);
 	}
 	if (envs && is_builtin(n))
 		ft_free_matrix(&envs);

@@ -103,10 +103,11 @@ int	ms_export(t_env *env, char **str, int i)
  *	This function will print each environment variable
  */
 
-void	print_env(t_env *env)
+void	print_env(t_env *env, char *cmd)
 {
 	if (!env)
 		return ;
+	ms_export1(env, set_var("_", cmd));
 	while (env->next)
 	{
 		printf("%s=%s\n", env->name, env->value);

@@ -82,7 +82,7 @@ void	export_last_cmd(t_env *env, char *s1, char *s2)
 {
 	while (env->next != 0)
 	{
-		if (ft_strcomp(env->name, s1))
+		if (ft_strncmp(env->name, s1, ft_strlen(env->name)))
 		{
 			ft_strreplace(&(env->value), s2);
 			return ;

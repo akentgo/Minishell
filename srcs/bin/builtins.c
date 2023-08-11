@@ -39,7 +39,7 @@ int	builtin(t_read *p, t_list *cmd, int *is_exit, int n)
 		else if (!cmd->next && s && !ft_strncmp(*s, "unset", n) && n == 5)
 			ms_unset(p->env, s, 0);
 		else if (!cmd->next && s && !ft_strncmp(*s, "env", n) && n == 3)
-			print_env(p->env);
+			print_env(p->env, *s);
 		else
 			builtin_exec(p, cmd);
 		cmd = cmd->next;
