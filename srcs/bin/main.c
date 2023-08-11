@@ -55,7 +55,7 @@ static t_read	init_vars(t_read prompt, char *str)
 		n = ft_itoa(ft_atoi(str) + 1);
 	free (str);
 	s = ft_strjoin("SHLVL=", n);
-	ms_export(prompt.env, &n, -1);
+	ms_export(prompt.env, &s, -1);
 	free (n);
 	free (s);
 	return (prompt);

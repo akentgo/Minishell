@@ -99,18 +99,18 @@ int	ms_export(t_env *env, char **str, int i)
 	return (0);
 }
 
-/*
- *	This function will print each environment variable
- */
-
-void	print_env(t_env *env, char *cmd)
+void	export_last_cmd(t_env *env, char *s1, char *s2)
 {
-	if (!env)
-		return ;
-	ms_export1(env, set_var("_", cmd));
-	while (env->next)
+	while (env->next != 0)
 	{
-		printf("%s=%s\n", env->name, env->value);
+		if (ft_strncmp(env->name, s1, ft_strlen(env->name)))
+		{
+			ft_strreplace(&(env->value), s2);
+			return ;
+		}
 		env = env->next;
 	}
+	env->next = new_env();
+	env->name = ft_strdup(s1);
+	env->value = ft_strdup(s2);
 }

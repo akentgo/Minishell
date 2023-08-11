@@ -69,13 +69,13 @@ static DIR	*cmd_check(t_read *p, t_list *cmd, char ***str, char *path)
 	return (dir);
 }
 
-void	get_cmd(t_read *p, t_list *cmd, char **str, char *path)
+void	get_cmd(t_read *p, t_list *cmd, char **s, char *path)
 {
 	t_ms	*n;
 	DIR		*dir;
 
 	n = cmd->content;
-	dir = cmd_check(p, cmd, &str, path);
+	dir = cmd_check(p, cmd, &s, path);
 	if (!is_builtin(n) && n && n->cmd && dir)
 		ms_error(IS_DIR, *n->cmd, 126);
 	else if (!is_builtin(n) && n && n->path && access(n->path, F_OK) == -1)
@@ -84,7 +84,7 @@ void	get_cmd(t_read *p, t_list *cmd, char **str, char *path)
 		ms_error(NOPERM, n->path, 126);
 	if (dir)
 		closedir(dir);
-	ft_free_matrix(&str);
+	ft_free_matrix(&s);
 }
 
 void	*exec_cmd(t_read *p, t_list *cmd)

@@ -21,7 +21,7 @@ void	builtin_exec(t_read *p, t_list *cmd)
 	exec_cmd(p, cmd);
 }
 
-int	builtin(t_read *p, t_list *cmd, int *is_exit, int n)
+int	builtin(t_read *p, t_list *cmd, int *ex, int n)
 {
 	char	**s;
 
@@ -31,7 +31,7 @@ int	builtin(t_read *p, t_list *cmd, int *is_exit, int n)
 		if (s)
 			n = ft_strlen(*s);
 		if (s && !ft_strncmp(*s, "exit", n) && n == 4)
-			g_status = ms_exit(cmd, is_exit);
+			g_status = ms_exit(cmd, ex);
 		else if (!cmd->next && s && !ft_strncmp(*s, "cd", n) && n == 2)
 			g_status = ms_cd(p);
 		else if (!cmd->next && s && !ft_strncmp(*s, "export", n) && n == 6)

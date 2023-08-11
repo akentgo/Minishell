@@ -54,42 +54,25 @@ int	print_empty_env(t_env *env)
 	return (0);
 }
 
-char	*env_parser(char *str, char *sep)
-{
-	char	*new_str;
-	int		qte[2];
-	int		i;
+/*
+ *	This function will print each environment variable
+ */
 
-	qte[0] = 0;
-	qte[1] = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (ft_strchr(sep, str[i]) && str[i] != '\0')
-		{
-			new_str = malloc(sizeof(char) * i + 1);
-			if (!new_str)
-				return (NULL);
-			ft_strlcpy(new_str, str, i);
-			return (new_str);
-		}
-		i++;
-	}
-	return (new_str);
-}
-
-void	export_last_cmd(t_env *env, char *s1, char *s2)
+void	print_env(t_env *env, char *cmd)
 {
-	while (env->next != 0)
+	if (!env)
+		return ;
+	ms_export1(env, set_var("_", cmd));
+	while (env->next)
 	{
-		if (ft_strncmp(env->name, s1, ft_strlen(env->name)))
-		{
-			ft_strreplace(&(env->value), s2);
-			return ;
-		}
+		printf("%s=%s\n", env->name, env->value);
 		env = env->next;
 	}
-	env->next = new_env();
-	env->name = ft_strdup(s1);
-	env->value = ft_strdup(s2);
+}
+
+void	print_var(t_env *env, char *str)
+{
+	if (!str)
+		return ;
+	printf("%s\n", search_env(env, str));
 }

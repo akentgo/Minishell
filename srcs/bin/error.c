@@ -86,27 +86,27 @@ int	ms_exit(t_list *cmd, int *ex)
 /*
  *	This function will check for errors during cd execution
  */
-void	cd_error(char **str[2])
+void	cd_error(char **s[2])
 {
 	DIR	*dir;
 
 	dir = NULL;
-	if (str[0][1])
-		dir = opendir(str[0][1]);
-	if (!str[0][1] && str[1][0] && !str[1][0][0])
+	if (s[0][1])
+		dir = opendir(s[0][1]);
+	if (!s[0][1] && s[1][0] && !s[1][0][0])
 	{
 		g_status = 1;
 		ft_putstr_fd("minishell: HOME not set\n", 2);
 	}
-	if (str[1][0] && !str[0][1])
-		g_status = chdir(str[1][0]) == -1;
-	if (str[0][1] && dir && access(str[0][1], F_OK) != -1)
-		chdir(str[0][1]);
-	else if (str[0][1] && access(str[0][1], F_OK) == -1)
-		ms_error(NODIR, str[0][1], 1);
-	else if (str[0][1])
-		ms_error(NOT_DIR, str[0][1], 1);
-	if (str[0][1] && dir)
+	if (s[1][0] && !s[0][1])
+		g_status = chdir(s[1][0]) == -1;
+	if (s[0][1] && dir && access(s[0][1], F_OK) != -1)
+		chdir(s[0][1]);
+	else if (s[0][1] && access(s[0][1], F_OK) == -1)
+		ms_error(NODIR, s[0][1], 1);
+	else if (s[0][1])
+		ms_error(NOT_DIR, s[0][1], 1);
+	if (s[0][1] && dir)
 		closedir(dir);
 }
 

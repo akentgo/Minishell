@@ -19,7 +19,7 @@ BUILTINS = $(addprefix srcs/builtins/, $(BUILTIN_FILES))
 BUILTIN_FILES = cd.c echo.c pwd.c
 
 ENVIRONMENT = $(addprefix srcs/environment/, $(ENVIRONMENT_FILES))
-ENVIRONMENT_FILES = env_utils2.c env_utils3.c envs_search.c envs_utils.c envs.c
+ENVIRONMENT_FILES = env_utils2.c env_utils3.c env_search.c env_utils.c envs.c
 
 FILES = $(SRC:srcs/%=%)
 

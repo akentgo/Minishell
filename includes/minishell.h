@@ -27,14 +27,6 @@
 
 int	g_status;
 
-//pa borra
-# define SUCCESS 0
-# define FAILURE 1
-# define ECHO 2
-# define PWD 3
-# define UNSET 4
-# define SET 5
-
 ///////// ERROR CODES //////
 # define QUOTE 1
 # define NODIR 2
@@ -85,44 +77,45 @@ int				ms_echo(t_list *cmd);
 //PWD.C//
 int				ms_pwd(void);
 
-//ENV_UTILS2.C
-void			ft_free_env(t_env *env);
-char			**ft_split_env(char *str);
-int				print_empty_env(t_env *env);
-char			*env_parser(char *str, char *sep);
-void			export_last_cmd(t_env *env, char *s1, char *s2);
-
-//ENV_UTILS3.C
-int				env_size(char **env);
-int				ms_export1(t_env *env, char *str);
-void			print_var(t_env *env, char *str);
-
-//ENVS_SEARCH//
-int				ft_strchr_i(const char *s, int c);
-char			*search_env(t_env *env, char *var);
-char			*search_env_len(t_env *env, char *var, int n);
-
-//ENV_UTILS.C//
-void			unset_helper(t_env *env, char *str);
-int				ms_unset(t_env *env, char **str, int i);
-void			export_helper(t_env *env, char **str);
-int				ms_export(t_env *env, char **str, int i);
-void			print_env(t_env *env, char *cmd);
-
 //ENVS.C//
 t_env			*new_env(void);
 void			env_fill(t_env **list, char **env);
 char			*set_var(char *name, char *value);
 t_env			*env_set(char **env);
 
+//ENV_UTILS.C//
+void			unset_helper(t_env *env, char *str);
+int				ms_unset(t_env *env, char **str, int i);
+void			export_helper(t_env *env, char **str);
+int				ms_export(t_env *env, char **str, int i);
+void			export_last_cmd(t_env *env, char *s1, char *s2);
+
+//ENV_UTILS2.C
+void			ft_free_env(t_env *env);
+char			**ft_split_env(char *str);
+int				print_empty_env(t_env *env);
+void			print_env(t_env *env, char *cmd);
+void			print_var(t_env *env, char *str);
+
+//ENV_UTILS3.C
+int				env_size(char **env);
+int				ms_export1(t_env *env, char *str);
+char			*env_parser(char *str, char *sep);
+
+//ENVS_SEARCH//
+int				ft_strchr_i(const char *s, int c);
+char			*search_env(t_env *env, char *var);
+char			*search_env_len(t_env *env, char *var, int n);
+
 //ARGS.C//
 char			**ft_matrix_append(char ***big, char **small, int n);
-static char		**split_all(char **args, t_read *r);
+static char		**split_all(char **args, t_read *p);
 static void		*parse_args(char **args, t_read *p);
 void			*check_args(char *out, t_read *p);
 
 //BUILTINS.C//
-int				builtin(t_read *prompt, t_list *cmd, int *is_exit, int n);
+void			builtin_exec(t_read *p, t_list *cmd);
+int				builtin(t_read *p, t_list *cmd, int *ex, int n);
 int				is_builtin(t_ms *m);
 
 //CMD_NODES.C//
@@ -131,21 +124,21 @@ t_list			*clear_ms(t_list *cmd, char **args, char **tmp);
 char			**cmd_trim(char	**args);
 t_ms			*get_redir(t_ms *node, char **a[2], int *i);
 void			check_redir_caller(char **a[2], int *i);
+
+//CMD_NODES_UTILS.C//
 void			check_redir_in(char **a[2], int *i);
 void			check_redir_out(char **a[2], int *i);
 t_list			*ms_fill(char **args, int i);
 char			**ft_expand_arr(char **in, char *new);
 
-//CUSTOM_CMD.C//
-static void		update_output(char ***splitted, int fd);
-void			exec_custom(char ***out, char *cmd, char *arg, char **env);
-
 //ERROR.C//
+void			ms_error2(int err_code, char *param, int err);
 void			*ms_error(int err_code, char *param, int err);
-int				ft_atoi_mod(const char *str, long *l);
 int				ms_exit(t_list *cmd, int *ex);
 void			cd_error(char **str[2]);
 void			free_cmd(void *cmd);
+
+//ERROR_UTILS.C//
 void			ft_free_matrix(char ***matrix);
 int				ft_matrixlen(char **matrix);
 char			**dup_matrix(char **matrix);
@@ -165,7 +158,6 @@ void			*check_to_fork(t_read *p, t_list *cmd, int fd[2]);
 
 //EXPANDER.C//
 int				ft_strchr_r(const char *str, char *check);
-int				ft_strchr_r_i(const char *str, char *check);
 char			*expand_path(char *str, int i, int qte[2], char *value);
 static char		*get_substr(char *str, int i, t_read *rd);
 char			*expand_var(char *str, int qte[2], int i, t_read *rd);
@@ -197,11 +189,6 @@ int				n_words(const char *str, char *sep, int ct[2]);
 static char		**ft_fill_array(char *str, char **ret, char *sep, int i[3]);
 char			**ft_cmdsplit(char *rd_out, char *sep);
 
-//PROMPT.C//
-static char		*get_home(t_read p);
-static char		*get_user(t_read p);
-char			*ms_getprompt(t_read p);
-
 //REDIR_SPLITTER.C//
 int				redir_words(char *str, char *sep, int ct);
 static char		**ft_fill_redir(char *str, char **ret, char *sep, int i[3]);
@@ -215,5 +202,6 @@ int				ft_arealnum(char *str);
 char			**turn_into_arr(t_env *envs);
 void			ft_strreplace(char **s1, char *s2);
 int				ft_strcomp(char *a, char *b);
+int				ft_atoi_mod(const char *str, long *l);
 
 #endif

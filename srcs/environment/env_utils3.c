@@ -49,9 +49,26 @@ int	ms_export1(t_env *env, char *str)
 	return (0);
 }
 
-void	print_var(t_env *env, char *str)
+char	*env_parser(char *str, char *sep)
 {
-	if (!str)
-		return ;
-	printf("%s\n", search_env(env, str));
+	char	*new_str;
+	int		qte[2];
+	int		i;
+
+	qte[0] = 0;
+	qte[1] = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (ft_strchr(sep, str[i]) && str[i] != '\0')
+		{
+			new_str = malloc(sizeof(char) * i + 1);
+			if (!new_str)
+				return (NULL);
+			ft_strlcpy(new_str, str, i);
+			return (new_str);
+		}
+		i++;
+	}
+	return (new_str);
 }

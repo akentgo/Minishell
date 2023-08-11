@@ -14,30 +14,30 @@
 
 extern int	g_status;
 
-char	*get_heredoc_str(char *str[2], size_t len, char *lim, char *warning)
+char	*get_heredoc_str(char *s[2], size_t len, char *lim, char *warning)
 {
 	char	*tmp;
 
-	while (g_status != 130 && (!str[0] || ft_strncmp(str[0], lim, len) \
+	while (g_status != 130 && (!s[0] || ft_strncmp(s[0], lim, len) \
 			|| ft_strlen(lim) != len))
 	{
-		tmp = str[1];
-		str[1] = ft_strjoin(str[1], str[0]);
+		tmp = s[1];
+		s[1] = ft_strjoin(s[1], s[0]);
 		free (tmp);
-		free (str[0]);
-		str[0] = readline("> ");
-		if (!str[0])
+		free (s[0]);
+		s[0] = readline("> ");
+		if (!s[0])
 		{
 			printf("%s (wanted `%s\')\n", warning, lim);
 			break ;
 		}
-		tmp = str[0];
-		str[0] = ft_strjoin(str[0], "\n");
+		tmp = s[0];
+		s[0] = ft_strjoin(s[0], "\n");
 		free (tmp);
-		len = ft_strlen(str[0]) - 1;
+		len = ft_strlen(s[0]) - 1;
 	}
-	free (str[0]);
-	return (str[1]);
+	free (s[0]);
+	return (s[1]);
 }
 
 /*

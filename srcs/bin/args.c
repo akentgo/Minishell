@@ -43,7 +43,7 @@ char	**ft_matrix_append(char ***big, char **sm, int n)
 	return (*big);
 }
 
-static char	**split_all(char **args, t_read *r)
+static char	**split_all(char **args, t_read *p)
 {
 	char	**splitted;
 	int		i;
@@ -52,8 +52,8 @@ static char	**split_all(char **args, t_read *r)
 	i = -1;
 	while (args && args[++i])
 	{
-		args[i] = expand_var(args[i], q, -1, r);
-		args[i] = expand_path(args[i], -1, q, search_env(r->env, "HOME"));
+		args[i] = expand_var(args[i], q, -1, p);
+		args[i] = expand_path(args[i], -1, q, search_env(p->env, "HOME"));
 		splitted = redir_split(args[i], "><|");
 		ft_matrix_append(&args, splitted, i);
 		i += ft_matrixlen(splitted) - 1;
