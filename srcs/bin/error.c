@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:50:35 by akent-go          #+#    #+#             */
-/*   Updated: 2023/08/09 17:03:47 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/13 11:00:27 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*ms_error(int err_code, char *param, int err)
 	if (err_code == QUOTE)
 		ft_putstr_fd("El Nano🇪🇸 : error while looking for matching quote", 2);
 	else if (err_code == NODIR)
-		ft_putstr_fd("El Nano🇪🇸 : No such file or directoy: ", 2);
+		ft_putstr_fd("El Nano🇪🇸 : No such file or directory: ", 2);
 	else if (err_code == NOPERM)
 		ft_putstr_fd("El Nano🇪🇸 : permission denied: ", 2);
 	else if (err_code == NCMD)
@@ -96,7 +96,7 @@ void	cd_error(char **s[2])
 	if (!s[0][1] && s[1][0] && !s[1][0][0])
 	{
 		g_status = 1;
-		ft_putstr_fd("minishell: HOME not set\n", 2);
+		ft_putstr_fd("El Nano🇪🇸 : HOME not set\n", 2);
 	}
 	if (s[1][0] && !s[0][1])
 		g_status = chdir(s[1][0]) == -1;

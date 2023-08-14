@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:22:27 by akent-go          #+#    #+#             */
-/*   Updated: 2023/08/09 17:04:54 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/13 10:51:42 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	env_fill(t_env **list, char **env)
 {
 	int		i;
 	char	**holder;
-	t_env	*head;
 	t_env	*tmp;
 
 	i = -1;

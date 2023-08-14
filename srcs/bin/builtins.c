@@ -6,7 +6,7 @@
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:37:55 by akent-go          #+#    #+#             */
-/*   Updated: 2023/08/09 17:03:29 by akent-go         ###   ########.fr       */
+/*   Updated: 2023/08/13 11:25:50 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	builtin(t_read *p, t_list *cmd, int *ex, int n)
 		else if (!cmd->next && s && !ft_strncmp(*s, "export", n) && n == 6)
 			g_status = ms_export(p->env, s, 0);
 		else if (!cmd->next && s && !ft_strncmp(*s, "unset", n) && n == 5)
-			ms_unset(p->env, s, 0);
+			g_status = ms_unset(p->env, s, 0);
 		else if (!cmd->next && s && !ft_strncmp(*s, "env", n) && n == 3)
 			print_env(p->env, *s);
 		else
