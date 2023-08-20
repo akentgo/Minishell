@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 11:46:10 by asolano-          #+#    #+#             */
-/*   Updated: 2023/07/30 17:14:07 by akent-go         ###   ########.fr       */
+/*   Created: 2023/07/30 17:15:10 by akent-go          #+#    #+#             */
+/*   Updated: 2023/08/09 17:04:33 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "../../includes/minishell.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, unsigned int size)
+int	ms_pwd(void)
 {
-	unsigned int	i;
-	size_t			length;
+	char	cwd[PATH_MAX];
 
-	i = 0;
-	length = 0;
-	if (!src)
-		return (0);
-	while (src[length])
-		length++;
-	if (size > 0)
+	if (getcwd(cwd, PATH_MAX))
 	{
-		while (src[i] && i < size - 1)
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
+		ft_putendl_fd(cwd, 1);
+		return (0);
 	}
-	return (length);
+	else
+		return (1);
 }

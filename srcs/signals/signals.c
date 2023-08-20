@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 11:46:10 by asolano-          #+#    #+#             */
-/*   Updated: 2023/07/30 17:14:07 by akent-go         ###   ########.fr       */
+/*   Created: 2023/07/30 18:15:13 by akent-go          #+#    #+#             */
+/*   Updated: 2023/08/13 10:42:57 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "../../includes/minishell.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, unsigned int size)
+void	sg_handle(int sig)
 {
-	unsigned int	i;
-	size_t			length;
-
-	i = 0;
-	length = 0;
-	if (!src)
-		return (0);
-	while (src[length])
-		length++;
-	if (size > 0)
-	{
-		while (src[i] && i < size - 1)
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
-	}
-	return (length);
+	rl_on_new_line();
+	rl_redisplay();
+	rl_replace_line("", 0);
+	printf("\033[K\n");
+	rl_on_new_line();
+	rl_redisplay();
 }

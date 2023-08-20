@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akent-go <akent-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 11:46:10 by asolano-          #+#    #+#             */
-/*   Updated: 2023/07/30 17:14:07 by akent-go         ###   ########.fr       */
+/*   Created: 2023/07/30 17:15:47 by akent-go          #+#    #+#             */
+/*   Updated: 2023/08/09 17:04:30 by akent-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "../../includes/minishell.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, unsigned int size)
+int	ms_echo(t_list *cmd)
 {
-	unsigned int	i;
-	size_t			length;
+	char	**argv;
+	t_ms	*n;
+	int		i[3];
 
-	i = 0;
-	length = 0;
-	if (!src)
-		return (0);
-	while (src[length])
-		length++;
-	if (size > 0)
+	i[0] = 0;
+	i[1] = 0;
+	i[2] = 1;
+	n = cmd->content;
+	argv = n->cmd;
+	while (argv && argv[++i[0]])
 	{
-		while (src[i] && i < size - 1)
+		if (!i[1] && !ft_strncmp(argv[i[0]], "-n", 2))
+			i[2] = 0;
+		else
 		{
-			dest[i] = src[i];
-			i++;
+			i[1] = 1;
+			ft_putstr_fd(argv[i[0]], 1);
+			if (argv[i[0] + 1])
+				ft_putchar_fd(' ', 1);
 		}
-		dest[i] = '\0';
 	}
-	return (length);
+	if (i[2])
+		write(1, "\n", 1);
+	return (0);
 }
